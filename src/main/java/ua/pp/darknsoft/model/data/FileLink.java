@@ -1,14 +1,75 @@
 package ua.pp.darknsoft.model.data;
-/** Прикрепленные к документу файлы */
-@Entity public class FileLink{
+import java.io.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+
+/** 
+ * Прикрепленные к документу файлы 
+ * */
+@Entity 
+public class FileLink implements Serializable{
 	/** Идентификатор записи */
-	protected @Id @GeneratedValue long Id;
+	@Id 
+	@GeneratedValue 
+	private long Id;
 
-	protected long RecordId;
+	/** Название файла */
+	private String Name;
 
-	protected String Name;
+	/** Содержимое файла */
+	@Lob 
+	private byte[] Content;
 
-	protected byte[] Content;
+	/** Ссылка на документ, в который вложен файл
+	 *  */
+	private Record Document;
+
+	public FileLink(){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	public FileLink(Record Document){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	public long getId(){
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
+	}
+
+	public void setName(String Name){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	public String getName(){
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
+	}
+
+	public void setContent(byte[] Content){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	public byte[] getContent(){
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
+	}
+
+	public void setDocument(Record Document){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	public Record getDocument(){
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
+	}
 
 }
 

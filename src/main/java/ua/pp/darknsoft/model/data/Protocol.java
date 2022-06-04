@@ -1,17 +1,83 @@
 package ua.pp.darknsoft.model.data;
+import java.io.*;
 import java.sql.*;
-/** Протокол работы с документом. Отражает любые изменения в нем */
-@Entity public class Protocol{
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+/** 
+ * Протокол работы с документом. Отражает 
+ * любые изменения в нем 
+ * */
+@Entity 
+public class Protocol implements Serializable{
 	/** Идентификатор записи */
-	protected @Id @GeneratedValue long Id;
+	@Id 
+	@GeneratedValue 
+	private long Id;
 
-	protected Date Date;
+	/** Пользователь которого логируем */
+	private User User;
 
-	protected int OperationId;
+	/** Действие которое логируется */
+	private Operation Operation;
 
-	protected long LinkId;
+	/** Время события */
+	private Date Date;
 
-	protected int UserId;
+	/** Ссылка на объект, изменения в котором мы логируем
+	 *  */
+	private long LinkId;
+
+	public Protocol(){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	public long getId(){
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
+	}
+
+	public void setDate(Date Date){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	public Date getDate(){
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
+	}
+
+	public void setLinkId(long LinkId){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	public long getLinkId(){
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
+	}
+
+	public void setOperation(Operation Operation){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	public Operation getOperation(){
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
+	}
+
+	public void setUser(User User){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	public User getUser(){
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
+	}
 
 }
 

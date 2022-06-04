@@ -2,10 +2,10 @@ package ua.pp.darknsoft.model.data;
 import java.io.*;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
-
-/** Справочник. Обозначение категории резолюции. Часто используется при закрытии резолюции. Есть часто используемые варианты. 
+import javax.persistence.Id;
+/** 
+ * Справочник. Обозначение категории резолюции. Часто используется при закрытии резолюции. Есть часто используемые варианты. 
  * <ul>
  * <li>Контроль продлен</li>
  * <li>Рассмотренно положительно</li>
@@ -13,43 +13,50 @@ import javax.persistence.GeneratedValue;
  * <li>Даны разъяснения</li>
  * <li>Возвращено автору</li>
  * <li>Переслано</li>
- * </ul> */
-@Entity
+ * </ul> 
+ * */
+@Entity 
 public class CategoryResolution implements Serializable{
 	/** Идентификатор записи */
 	@Id 
-	@GeneratedValue
+	@GeneratedValue 
 	private int Id;
 
 	/** Текстовое обозначение категории резолюции.  */
-	private java.lang.String/* String */ Name;
+	private String Name;
 
 	/** Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы */
 	private boolean Deleted;
 
+	public CategoryResolution(){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
 	public int getId(){
-		return this.Id;
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
 	}
 
 	public void setName(String Name){
-		this.Name = Name;
+		// TODO add implementation
+		throw new UnsupportedOperationException();
 	}
 
 	public String getName(){
-		return this.Name;
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
 	}
 
 	protected void setDeleted(boolean Deleted){
-		this.Deleted = Deleted;
+		// TODO add implementation
+		throw new UnsupportedOperationException();
 	}
 
 	public boolean isDeleted(){
-		return this.Deleted;
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
 	}
-	public CategoryResolution(){
-		// TODO add implementation
-	}
-
 
 }
 

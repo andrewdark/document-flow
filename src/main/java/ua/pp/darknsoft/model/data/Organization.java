@@ -1,18 +1,67 @@
 package ua.pp.darknsoft.model.data;
-/** Справочник организаций (корреспонденты и адресаты). Интерактивно пополняемый. */
-public @Entity class Organization{
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+/** 
+ * Справочник организаций (корреспонденты и адресаты).
+ * Интерактивно пополняемый. 
+ * */
+@Entity 
+public class Organization{
+	
 	/** Идентификатор записи */
-	protected @Id @GeneratedValue long Id;
+	@Id 
+	@GeneratedValue 
+	private long Id;
 
-	protected String Name;
+	/** Название организации */
+	private String Name;
 
-	protected String Code;
+	/** Код ЕДРПОУ или ОКПО */
+	private String Code;
 
 	/** Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы */
-	protected boolean Deleted;
+	private boolean Deleted;
+
+	public Organization(){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
 
 	public long getId(){
 		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
+	}
+
+	public void setName(String Name){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	public String getName(){
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
+	}
+
+	public void setCode(String Code){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	public String getCode(){
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
+	}
+
+	private void setDeleted(boolean Deleted){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean isDeleted(){
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
 	}
 
 }

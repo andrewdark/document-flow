@@ -3,80 +3,109 @@ import java.io.*;
 import java.util.*;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 
-/** Справочник. Интерактивно пополняемый. Список граждан, которые обратились с заявлениями, или которым отправили письма. */
-@Entity
+/** 
+ * Справочник. Интерактивно пополняемый. Список граждан, 
+ * которые обратились с заявлениями, или которым отправили письма. 
+ * */
+@Entity 
 public class Citizen implements Serializable{
-
+	
 	/** Идентификатор записи */
-	private @Id
-	@GeneratedValue
-	long Id;
+	@Id 
+	@GeneratedValue 
+	private long Id;
 
 	/** Полное имя гражданина. */
-	private java.lang.String Fullname;
+	private String Fullname;
 
 	/** Адрес гражданина, куда отправляять письма, а не адрес вопроса. */
-	private java.lang.String Address;
+	private String Address;
 
 	/** Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы */
 	private boolean Deleted;
 
-	private @ManyToMany @JoinTable(name="CitizenStatusLink",joinColumns=@JoinColumn(name="CitizenId"),inverseJoinColumns=@JoinColumn(name="StatusId")) /* @ManyToMany */ 
-	/* @JoinTable(
+	/** Список социальных статусов гражданина */
+	@ManyToMany 
+	@JoinTable(
 		name="CitizenStatusLink",
 		joinColumns=@JoinColumn(name="CitizenId"),
 		inverseJoinColumns=@JoinColumn(name="StatusId")
-	) */
-	java.util.Set<CitizenStatus> Status;
+	) 
+	private Set<CitizenStatus> Status;
 
-	private @ManyToMany @JoinTable(name="CitizenCategoryLink",joinColumns=@JoinColumn(name="CitizenId"),inverseJoinColumns=@JoinColumn(name="CategoryId")) /* @ManyToMany */ 
-	/* @JoinTable(
+	/** Список социальных категорий гражданина */
+	@ManyToMany 
+	@JoinTable(
 		name="CitizenCategoryLink",
 		joinColumns=@JoinColumn(name="CitizenId"),
 		inverseJoinColumns=@JoinColumn(name="CategoryId")
-	) */
-	java.util.Set<CitizenCategory> Category;
+	) 
+	private Set<CitizenCategory> Category;
+
+	public Citizen(){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
 
 	public long getId(){
-		return this.Id;
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
 	}
 
 	public void setFullname(String Fullname){
-		this.Fullname = Fullname;
+		// TODO add implementation
+		throw new UnsupportedOperationException();
 	}
 
 	public String getFullname(){
-		return this.Fullname;
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
 	}
 
 	public void setAddress(String Address){
-		this.Address = Address;
+		// TODO add implementation
+		throw new UnsupportedOperationException();
 	}
 
 	public String getAddress(){
-		return this.Address;
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
 	}
 
 	protected void setDeleted(boolean Deleted){
-		this.Deleted = Deleted;
+		// TODO add implementation
+		throw new UnsupportedOperationException();
 	}
 
 	public boolean isDeleted(){
-		return this.Deleted;
+		// TODO add implementation and return statement
+		throw new UnsupportedOperationException();
+	}
+
+	private void setStatus(Set<CitizenStatus> Status){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
 	}
 
 	public Set<CitizenStatus> getStatus(){
-		return this.Status;
+		// TODO add implementation
+		throw new UnsupportedOperationException();
+	}
+
+	protected void setCategory(Set<CitizenCategory> Category){
+		// TODO add implementation
+		throw new UnsupportedOperationException();
 	}
 
 	public Set<CitizenCategory> getCategory(){
-		return this.Category;
+		// TODO add implementation
+		throw new UnsupportedOperationException();
 	}
 
 }

@@ -1,43 +1,28 @@
 package ua.pp.darknsoft.model.data;
 import java.io.*;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /** 
- * Справочник всех настроек 
+ * Типы операций с документом (и его составных частях) 
+ * в протоколе 
  * */
 @Entity 
-public class SettingsFlag implements Serializable{
-	
+public class Operation implements Serializable{
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 
 	private int Id;
 
-	/** Название настройки(стоит задуматься о точечной номенклатуре) */
-	private String Name;
-
-	/** Описание настройки */
 	private String Description;
 
-	public SettingsFlag(){
+	public Operation(){
 		// TODO add implementation
 		throw new UnsupportedOperationException();
 	}
 
 	public int getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
-	}
-
-	public void setName(String Name){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
-	}
-
-	public String getName(){
 		// TODO add implementation and return statement
 		throw new UnsupportedOperationException();
 	}
