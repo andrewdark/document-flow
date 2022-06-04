@@ -12,16 +12,17 @@ import javax.persistence.OneToOne;
  * */
 @Entity 
 public class Delivery implements Serializable{
+	
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 
-	protected int Id;
+	private int Id;
 
 	/** Наименование вида доставки */
-	protected String Name;
+	private java.lang.String Name;
 
 	/** Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы */
-	protected boolean Deleted;
+	private boolean Deleted;
 
 	public Delivery(){
 		// TODO add implementation

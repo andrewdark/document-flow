@@ -13,19 +13,19 @@ public class LinkRecord implements Serializable{
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 
-	protected long Id;
+	private long Id;
 
 	/** Тип связки */
-	protected LinkType Type;
+	private LinkType Type;
 
 	/** Ссылка на основной документ */
-	protected Record Document;
+	private Record Document;
 
 	/** Ссылка на связаный документ */
-	protected Record Link;
+	private Record Link;
 
 	/** Примечание / информация о виртуальном документе */
-	protected String Note;
+	private java.lang.String Note;
 
 	public LinkRecord(){
 		// TODO add implementation
