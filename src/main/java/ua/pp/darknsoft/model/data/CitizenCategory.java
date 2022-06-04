@@ -3,12 +3,12 @@ import java.io.*;
 /** Справочник категорий граждан. Существует предопределенный справочник. */
 public @Entity class CitizenCategory implements Serializable{
 	/** Идентификатор записи */
-	protected @Id @GeneratedValue int Id;
+	private @Id @GeneratedValue int Id;
 
-	public String Name;
+	private java.lang.String Name;
 
 	/** Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы */
-	protected boolean Deleted;
+	private boolean Deleted;
 
 	public int getId(){
 		// TODO add implementation and return statement

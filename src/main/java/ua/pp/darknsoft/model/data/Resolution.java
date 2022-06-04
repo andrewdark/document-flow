@@ -1,7 +1,7 @@
 package ua.pp.darknsoft.model.data;
 import java.sql.*;
 /** Резолюции а документе */
-@Entity public class Resolution{
+@Entity public class Resolution implements java.io.Serializable{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue long Id;
 
@@ -20,8 +20,11 @@ import java.sql.*;
 	protected String Resume;
 
 	protected String Summary;
+	protected Record Document;
 
-	protected int CategoryId;
+	protected CategoryResolution Category;
+
+
 
 }
 

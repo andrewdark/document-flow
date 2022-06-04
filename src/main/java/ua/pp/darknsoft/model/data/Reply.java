@@ -1,7 +1,7 @@
 package ua.pp.darknsoft.model.data;
 import java.sql.*;
 /** Отчеты исполнителей */
-@Entity public class Reply{
+@Entity public class Reply implements java.io.Serializable{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue long Id;
 

@@ -9,45 +9,39 @@ import javax.persistence.ManyToMany;
 import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 
-/** 
- * Справочник. Интерактивно пополняемый. 
- * Список граждан, которые обратились с заявлениями, 
- * или которым отправили письма. 
- * */
+/** Справочник. Интерактивно пополняемый. Список граждан, которые обратились с заявлениями, или которым отправили письма. */
 @Entity
 public class Citizen implements Serializable{
 
-	/** 
-	 * Идентификатор записи 
-	 * */
-	@Id 
+	/** Идентификатор записи */
+	private @Id
 	@GeneratedValue
-	protected  long Id;
+	long Id;
 
 	/** Полное имя гражданина. */
-	public String Fullname;
+	private java.lang.String Fullname;
 
 	/** Адрес гражданина, куда отправляять письма, а не адрес вопроса. */
-	public String Address;
+	private java.lang.String Address;
 
 	/** Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы */
-	protected boolean Deleted;
+	private boolean Deleted;
 
-	@ManyToMany 
-	@JoinTable(
+	private @ManyToMany @JoinTable(name="CitizenStatusLink",joinColumns=@JoinColumn(name="CitizenId"),inverseJoinColumns=@JoinColumn(name="StatusId")) /* @ManyToMany */ 
+	/* @JoinTable(
 		name="CitizenStatusLink",
 		joinColumns=@JoinColumn(name="CitizenId"),
 		inverseJoinColumns=@JoinColumn(name="StatusId")
-	)
-	public Set<CitizenStatus> Status;
+	) */
+	java.util.Set<CitizenStatus> Status;
 
-	@ManyToMany 
-	@JoinTable(
+	private @ManyToMany @JoinTable(name="CitizenCategoryLink",joinColumns=@JoinColumn(name="CitizenId"),inverseJoinColumns=@JoinColumn(name="CategoryId")) /* @ManyToMany */ 
+	/* @JoinTable(
 		name="CitizenCategoryLink",
 		joinColumns=@JoinColumn(name="CitizenId"),
 		inverseJoinColumns=@JoinColumn(name="CategoryId")
-	)
-	public Set<CitizenCategory> Category;
+	) */
+	java.util.Set<CitizenCategory> Category;
 
 	public long getId(){
 		return this.Id;

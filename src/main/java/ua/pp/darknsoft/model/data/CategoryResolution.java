@@ -13,20 +13,19 @@ import javax.persistence.GeneratedValue;
  * <li>Даны разъяснения</li>
  * <li>Возвращено автору</li>
  * <li>Переслано</li>
- * </ul> 
- * */
+ * </ul> */
 @Entity
 public class CategoryResolution implements Serializable{
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue
-	protected int Id;
+	private int Id;
 
 	/** Текстовое обозначение категории резолюции.  */
-	public String Name;
+	private java.lang.String/* String */ Name;
 
 	/** Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы */
-	protected boolean Deleted;
+	private boolean Deleted;
 
 	public int getId(){
 		return this.Id;
@@ -47,6 +46,10 @@ public class CategoryResolution implements Serializable{
 	public boolean isDeleted(){
 		return this.Deleted;
 	}
+	public CategoryResolution(){
+		// TODO add implementation
+	}
+
 
 }
 
