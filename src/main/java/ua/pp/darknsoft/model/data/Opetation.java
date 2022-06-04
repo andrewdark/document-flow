@@ -1,6 +1,6 @@
 package ua.pp.darknsoft.model.data;
-/** Идентификатор записи */
-public class Opetation{
+/** Типы операций с документом (и его составных частях) в протоколе */
+@Entity public class Opetation{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue int Id;
 

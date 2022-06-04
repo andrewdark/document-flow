@@ -1,6 +1,6 @@
 package ua.pp.darknsoft.model.data;
 /** Иерархический справочник "Рубрикатор". Нужен для указания тематики вопроса в письме */
-public class Rubric{
+@Entity public class Rubric{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue int Id;
 

@@ -1,5 +1,10 @@
 package ua.pp.darknsoft.model.data;
 import java.io.*;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+
 /** Справочник. Обозначение категории резолюции. Часто используется при закрытии резолюции. Есть часто используемые варианты. 
  * <ul>
  * <li>Контроль продлен</li>
@@ -8,10 +13,14 @@ import java.io.*;
  * <li>Даны разъяснения</li>
  * <li>Возвращено автору</li>
  * <li>Переслано</li>
- * </ul> */
-public @Entity class CategoryResolution implements Serializable{
+ * </ul> 
+ * */
+@Entity
+public class CategoryResolution implements Serializable{
 	/** Идентификатор записи */
-	protected @Id @GeneratedValue int Id;
+	@Id 
+	@GeneratedValue
+	protected int Id;
 
 	/** Текстовое обозначение категории резолюции.  */
 	public String Name;
@@ -20,23 +29,23 @@ public @Entity class CategoryResolution implements Serializable{
 	protected boolean Deleted;
 
 	public int getId(){
-		// TODO add implementation and return statement
+		return this.Id;
 	}
 
 	public void setName(String Name){
-		// TODO add implementation
+		this.Name = Name;
 	}
 
 	public String getName(){
-		// TODO add implementation and return statement
+		return this.Name;
 	}
 
 	protected void setDeleted(boolean Deleted){
-		// TODO add implementation
+		this.Deleted = Deleted;
 	}
 
 	public boolean isDeleted(){
-		// TODO add implementation and return statement
+		return this.Deleted;
 	}
 
 }

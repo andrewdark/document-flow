@@ -1,6 +1,7 @@
 package ua.pp.darknsoft.model.data;
 import java.sql.*;
-public class Resolution{
+/** Резолюции а документе */
+@Entity public class Resolution{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue long Id;
 

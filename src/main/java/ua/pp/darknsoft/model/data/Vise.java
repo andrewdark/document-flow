@@ -1,6 +1,7 @@
 package ua.pp.darknsoft.model.data;
 import java.sql.*;
-public class Vise{
+/** Визы и подписи исходящего документа */
+@Entity public class Vise{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue long Id;
 

@@ -1,4 +1,5 @@
 package ua.pp.darknsoft.model.data;
+/** Справочник организаций (корреспонденты и адресаты). Интерактивно пополняемый. */
 public @Entity class Organization{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue long Id;

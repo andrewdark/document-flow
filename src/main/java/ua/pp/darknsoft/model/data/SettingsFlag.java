@@ -1,9 +1,12 @@
 package ua.pp.darknsoft.model.data;
-public class SettingsFlag{
+/** Справочник всех настроек */
+@Entity public class SettingsFlag{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue int Id;
 
 	protected String Name;
+	protected java.lang.String Description;
+
 
 }
 

@@ -1,10 +1,28 @@
 package ua.pp.darknsoft.model.data;
 import java.io.*;
 import java.util.*;
-/** Справочник. Интерактивно пополняемый. Список граждан, которые обратились с заявлениями, или которым отправили письма. */
-public @Entity class Citizen implements Serializable{
-	/** Идентификатор записи */
-	protected @Id @GeneratedValue long Id;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+
+/** 
+ * Справочник. Интерактивно пополняемый. 
+ * Список граждан, которые обратились с заявлениями, 
+ * или которым отправили письма. 
+ * */
+@Entity
+public class Citizen implements Serializable{
+
+	/** 
+	 * Идентификатор записи 
+	 * */
+	@Id 
+	@GeneratedValue
+	protected  long Id;
 
 	/** Полное имя гражданина. */
 	public String Fullname;
@@ -15,44 +33,56 @@ public @Entity class Citizen implements Serializable{
 	/** Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы */
 	protected boolean Deleted;
 
-	public @ManyToMany @JoinTable(name="CitizenStatusLink",joinColumns=@JoinColumn(name="CitizenId"),inverseJoinColumns=@JoinColumn(name="StatusId")) Set<CitizenStatus> Status;
+	@ManyToMany 
+	@JoinTable(
+		name="CitizenStatusLink",
+		joinColumns=@JoinColumn(name="CitizenId"),
+		inverseJoinColumns=@JoinColumn(name="StatusId")
+	)
+	public Set<CitizenStatus> Status;
 
-	public @ManyToMany @JoinTable(name="CitizenCategoryLink",joinColumns=@JoinColumn(name="CitizenId"),inverseJoinColumns=@JoinColumn(name="CategoryId")) Set<CitizenCategory> Category;
+	@ManyToMany 
+	@JoinTable(
+		name="CitizenCategoryLink",
+		joinColumns=@JoinColumn(name="CitizenId"),
+		inverseJoinColumns=@JoinColumn(name="CategoryId")
+	)
+	public Set<CitizenCategory> Category;
 
 	public long getId(){
-		// TODO add implementation and return statement
+		return this.Id;
 	}
 
 	public void setFullname(String Fullname){
-		// TODO add implementation
+		this.Fullname = Fullname;
 	}
 
 	public String getFullname(){
-		// TODO add implementation and return statement
+		return this.Fullname;
 	}
 
 	public void setAddress(String Address){
-		// TODO add implementation
+		this.Address = Address;
 	}
 
 	public String getAddress(){
-		// TODO add implementation and return statement
+		return this.Address;
 	}
 
 	protected void setDeleted(boolean Deleted){
-		// TODO add implementation
+		this.Deleted = Deleted;
 	}
 
 	public boolean isDeleted(){
-		// TODO add implementation and return statement
+		return this.Deleted;
 	}
 
 	public Set<CitizenStatus> getStatus(){
-		// TODO add implementation
+		return this.Status;
 	}
 
 	public Set<CitizenCategory> getCategory(){
-		// TODO add implementation
+		return this.Category;
 	}
 
 }

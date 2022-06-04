@@ -1,6 +1,6 @@
 package ua.pp.darknsoft.model.data;
 /** Группа документов. Иерархический справочник. */
-public class Docgroup{
+@Entity public class Docgroup{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue int Id;
 

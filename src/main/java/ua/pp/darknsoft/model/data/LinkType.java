@@ -1,5 +1,6 @@
 package ua.pp.darknsoft.model.data;
-public class LinkType{
+/** Варианты связок между документами */
+@Entity public class LinkType{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue int Id;
 

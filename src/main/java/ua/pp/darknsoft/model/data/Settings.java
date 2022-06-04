@@ -1,5 +1,6 @@
 package ua.pp.darknsoft.model.data;
-public class Settings{
+/** Настройки работы клиента */
+@Entity public class Settings{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue long Id;
 

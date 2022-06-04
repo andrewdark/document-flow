@@ -1,6 +1,7 @@
 package ua.pp.darknsoft.model.data;
 import java.sql.*;
-public class Protocol{
+/** Протокол работы с документом. Отражает любые изменения в нем */
+@Entity public class Protocol{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue long Id;
 

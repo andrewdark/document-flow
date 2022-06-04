@@ -1,5 +1,6 @@
 package ua.pp.darknsoft.model.data;
-public class Department{
+/** Справочник подразделений и должностных лиц */
+@Entity public class Department{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue long Id;
 

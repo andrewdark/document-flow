@@ -1,5 +1,6 @@
 package ua.pp.darknsoft.model.data;
-public class LinkRecord{
+/** Связка между документами */
+@Entity public class LinkRecord{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue long Id;
 

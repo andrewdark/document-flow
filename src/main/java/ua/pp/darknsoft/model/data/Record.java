@@ -1,7 +1,7 @@
 package ua.pp.darknsoft.model.data;
 import java.sql.*;
 /** "Тело" документа. Головной узел документа. К нему привязываются отстальные "части" документа */
-public class Record{
+@Entity public class Record{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue long Id;
 

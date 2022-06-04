@@ -1,6 +1,6 @@
 package ua.pp.darknsoft.model.data;
 /** Список видов доставки */
-public class Delivery{
+@Entity public class Delivery{
 	/** Идентификатор записи */
 	protected @Id @GeneratedValue int Id;
 
