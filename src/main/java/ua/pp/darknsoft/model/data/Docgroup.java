@@ -1,11 +1,16 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
-import java.util.*;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 /** 
  * Группа документов (Журнал регистрации). 
  * Иерархический справочник. 
@@ -19,14 +24,16 @@ public class Docgroup implements Serializable{
 	private int Id;
 
 	/** Ссылка на родительскую запись */
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Docgroup Parent;
 
 	/** Дочерние записи по иерархии
 	 *  */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Parent")
 	private Set<Docgroup> Chields;
 
 	/** Варианты документов: входящие, письма граждан, исходящие */
-	@Enumerated(EnumType.ORDINAL) 
+	@Enumerated
 	private DocgroupKind Kind;
 
 	/** Индекс по номенклатуре. Необходим для генерации номера */
@@ -45,13 +52,22 @@ public class Docgroup implements Serializable{
 	private boolean Deleted;
 
 	public Docgroup(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Id = -1;
+		this.Index = "";
+		this.Kind = null;
+		this.Name = "";
+		this.Node = false;
+		this.Parent = null;
+		this.Chields = new HashSet<>();
+		this.Deleted = false;
+		this.Shablon = "";			
 	}
 
 	public Docgroup(Docgroup Parent){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this();
+		this.Index = Parent.Index;
+		this.Parent = Parent;
+		this.Shablon = Parent.getShablon();
 	}
 
 	public Docgroup(int ParentId){
@@ -60,78 +76,63 @@ public class Docgroup implements Serializable{
 	}
 
 	public int getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
 	public Docgroup getParent(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Parent;
 	}
 
 	public Set<Docgroup> getChields(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		return this.Chields;
 	}
 
 	public void setKind(DocgroupKind Kind){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Kind = Kind;
 	}
 
 	public DocgroupKind getKind(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Kind;
 	}
 
 	public void setIndex(String Index){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Index = Index;
 	}
 
 	public String getIndex(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Index;
 	}
 
 	public void setName(String Name){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Name = Name;
 	}
 
 	public String getName(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Name;
 	}
 
 	protected void setNode(boolean Node){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Node = Node;
 	}
 
 	public boolean isNode(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Node;
 	}
 
-	public void setNumerator(String Numerator){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public void setShablon(String Shablon){
+		this.Shablon = Shablon;
 	}
 
-	public String getNumerator(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public String getShablon(){
+		return this.Shablon;
 	}
 
 	protected void setDeleted(boolean Deleted){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Deleted = Deleted;
 	}
 
 	public boolean isDeleted(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Deleted;
 	}
 
 	/** Сервисный метод, помогающий получить пеобходимый нумератор */

@@ -1,14 +1,13 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /** 
  * Иерархический справочник "Рубрикатор". 
@@ -17,7 +16,8 @@ import javax.persistence.OneToOne;
 @Entity 
 public class Rubric implements Serializable{
 	/** Идентификатор записи */
-	@Id @GeneratedValue 
+	@Id 
+	@GeneratedValue 
 	private int Id;
 
 	/** Код тематики вопроса (В некоторіх случаях обязательное) */
@@ -30,65 +30,71 @@ public class Rubric implements Serializable{
 	private boolean Deleted;
 
 	/** Ссілка на родительскую папку */
+	@ManyToOne	
 	private Rubric Parent;
 
 	/** Перечень дочерних рубрик */
+	@OneToMany
 	private Set<Rubric> Chields;
 
-	public Rubric(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public Rubric() {
+		this.Id = -1;
+		this.Code = "";
+		this.Name = "";
+		this.Deleted = false;
+		this.Parent = null;
+		this.Chields = new HashSet<>();
 	}
 
 	public Rubric(Rubric Parent){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this();
+		this.Parent = Parent;
 	}
 
 	public int getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
-	public void setCode(String Code){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public String getCode() {
+		return this.Code;
 	}
 
-	public String getCode(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setCode(String code) {
+		this.Code = code;
 	}
 
-	public void setName(String Name){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public String getName() {
+		return this.Name;
 	}
 
-	public String getName(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setName(String name) {
+		this.Name = name;
 	}
 
-	protected void setDeleted(boolean Deleted){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public boolean isDeleted() {
+		return this.Deleted;
 	}
 
-	public boolean isDeleted(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setDeleted(boolean deleted) {
+		this.Deleted = deleted;
 	}
 
-	public Rubric getParent(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public Rubric getParent() {
+		return this.Parent;
 	}
 
-	public Set<Rubric> getChields(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	protected void setParent(Rubric parent) {
+		this.Parent = parent;
 	}
+
+	public Set<Rubric> getChields() {
+		return this.Chields;
+	}
+
+	@Override
+	public String toString() {
+		return this.getName();
+	}	
 
 }
 

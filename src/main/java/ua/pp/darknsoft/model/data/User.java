@@ -1,10 +1,11 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 /** 
  * Список пользователей
  *  */
@@ -31,61 +32,65 @@ public class User implements Serializable{
 	private boolean Deleted;
 
 	/** Настройки пользователя */
+	@OneToMany
 	private Set<Settings> Settings;
 
-	public int getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public User() {
+		this.Id = -1;
+		this.Name = "";
+		this.Login = "";
+		this.Password = "";
+		this.Department = null;
+		this.Deleted = false;
+		this.Settings = new HashSet<>();
 	}
 
-	public void setName(String Name){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public int getId() {
+		return this.Id;
 	}
 
-	public String getName(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public String getName() {
+		return this.Name;
 	}
 
-	public void setLogin(String Login){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public void setName(String name) {
+		this.Name = name;
 	}
 
-	public String getLogin(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public String getLogin() {
+		return this.Login;
 	}
 
-	protected void setPassword(String Password){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public void setLogin(String login) {
+		this.Login = login;
 	}
 
-	public void setDepartment(String Department){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public String getPassword() {
+		return this.Password;
 	}
 
-	public String getDepartment(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	protected void setPassword(String password) {
+		this.Password = password;
 	}
 
-	protected void setDeleted(boolean Deleted){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public String getDepartment() {
+		return this.Department;
 	}
 
-	public boolean isDeleted(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setDepartment(String department) {
+		this.Department = department;
 	}
 
-	public Set<Settings> getSettings(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public boolean isDeleted() {
+		return this.Deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.Deleted = deleted;
+	}
+
+	public Set<Settings> getSettings() {
+		return this.Settings;
 	}
 
 }

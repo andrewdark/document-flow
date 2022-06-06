@@ -1,5 +1,8 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
+
+
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,49 +30,50 @@ public class FileLink implements Serializable{
 	private Record Document;
 
 	public FileLink(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Id = -1;
+		this.Name = "";
+		this.Content = null;
+		this.Document = null;
 	}
 
 	public FileLink(Record Document){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this();
+		this.Document = Document;
 	}
 
 	public long getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
 	public void setName(String Name){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Name = Name;
 	}
 
 	public String getName(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Name;
 	}
 
 	public void setContent(byte[] Content){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Content = Content;
 	}
 
 	public byte[] getContent(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Content;
 	}
 
 	public void setDocument(Record Document){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Document = Document;
 	}
 
 	public Record getDocument(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Document;
 	}
+	
+	@Override
+	public String toString() {
+		return this.getName();
+	}	
+
 
 }
 

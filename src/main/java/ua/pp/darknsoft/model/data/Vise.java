@@ -1,41 +1,67 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
-import java.sql.*;
+import java.io.Serializable;
+import java.sql.Date;
+
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /** 
  * Визы и подписи исходящего документа 
  * */
 @Entity 
 public class Vise implements Serializable{
+
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 
 	private long Id;
 
+	/**
+	 * Дата и время подписи документа
+	 */
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date Date;
 
+	/**
+	 * Ссылка на подписаный документ
+	 */
+	@ManyToOne	
 	private Record Document;
 
+	/**
+	 * Ссылка на должностное лицо подписавшее документ
+	 */
+	@ManyToOne	
 	private Department Official;
 
-	@Enumerated(EnumType.ORDINAL) 
+	/** 
+	 * Сила подписи: Подпись или Виза
+	 */
+	@Enumerated
 	private VisaKind Kind;
 
+	/**
+	 * Примечание подписавшего
+	 */
 	private String Note;
 
-	public Vise(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public Vise() {
+		this.Id = -1;
+		this.Date = null;
+		this.Document = null;
+		this.Official = null;
+		this.Kind = null;
+		this.Note = "";
 	}
 
 	public Vise(Record Document){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this();
+		this.Document = Document;
 	}
 
 	public Vise(long DocumentId){
@@ -44,8 +70,9 @@ public class Vise implements Serializable{
 	}
 
 	public Vise(Record Document, Department Official){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this();
+		this.Document = Document;
+		this.Official = Official;
 	}
 
 	public Vise(long DocumentId, long OfficialId){
@@ -53,55 +80,61 @@ public class Vise implements Serializable{
 		throw new UnsupportedOperationException();
 	}
 
-	public long getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public long getId() {
+		return this.Id;
 	}
 
-	public void setDate(Date Date){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public Date getDate() {
+		return this.Date;
 	}
 
-	public Date getDate(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setDate(Date date) {
+		this.Date = date;
 	}
 
-	public Record getDocument(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public Record getDocument() {
+		return this.Document;
 	}
 
-	protected void setOfficial(Department Official){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	protected void setDocument(Record document) {
+		this.Document = document;
 	}
 
-	public Department getOfficial(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public Department getOfficial() {
+		return this.Official;
 	}
 
-	public void setKind(VisaKind Kind){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public void setOfficial(Department official) {
+		this.Official = official;
 	}
 
-	public VisaKind getKind(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public VisaKind getKind() {
+		return this.Kind;
 	}
 
-	public void setNote(String Note){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public void setKind(VisaKind kind) {
+		this.Kind = kind;
 	}
 
-	public String getNote(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public String getNote() {
+		return this.Note;
 	}
+
+	public void setNote(String note) {
+		this.Note = note;
+	}
+
+	@Override
+	public String toString() {
+		String result = "";
+		if (this.getDate()!=null)
+			result = "["+this.getDate().toString()+"]";
+		if (this.getOfficial()!=null) {
+			if (result.length()>0) result += " ";
+			result += this.getOfficial().toString();
+		}
+		return result;
+	}	
 
 }
 

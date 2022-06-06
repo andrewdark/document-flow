@@ -10,32 +10,39 @@ import javax.persistence.Id;
  * */
 @Entity 
 public class Operation implements Serializable{
-	/** Идентификатор записи */
+	
+	/** 
+	 * Идентификатор записи 
+	 * */
 	@Id 
 	@GeneratedValue 
 	private int Id;
 
+	/** 
+	 * Описание операции 
+	 * */
 	private String Description;
 
 	public Operation(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Id = -1;
+		this.Description = "";
 	}
 
 	public int getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
 	public void setDescription(String Description){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Description = Description;
 	}
 
 	public String getDescription(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Description;
 	}
 
+	@Override
+	public String toString() {
+		return this.getDescription();
+	}	
 }
 

@@ -1,15 +1,16 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
-import java.sql.*;
-import java.util.*;
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /** 
  * Резолюции а документе 
@@ -22,23 +23,29 @@ public class Resolution implements Serializable{
 	private long Id;
 
 	/** Ссылка на документ */
+	@ManyToOne
 	private Record Document;
 
-	/** Текст резолюции
+	/** 
+	 * Текст резолюции
 	 *  */
 	private String Content;
 
 	/** Автор резолюции */
+	@ManyToOne
 	private Department Author;
 
 	/** Дата наложения резолюции */
-	private java.sql.Date ResolDate;
+	@Temporal(TemporalType.DATE)
+	private Date ResolDate;
 
 	/** Плановая дата исполнения резолюции */
-	private java.sql.Date PlanDate;
+	@Temporal(TemporalType.DATE)
+	private Date PlanDate;
 
 	/** Фактическая дата исполнения резолюции */
-	private java.sql.Date FactDate;
+	@Temporal(TemporalType.DATE)
+	private Date FactDate;
 
 	/** Основание снятия с контроля */
 	private String Resume;
@@ -46,20 +53,31 @@ public class Resolution implements Serializable{
 	/** Ход исполнения */
 	private String Summary;
 
-	/** Состояние исполнения резолюции */
+	/** Состояние исполнения резолюции */	
+	@ManyToOne	
 	private CategoryResolution Category;
 
 	/** Отчеты исполнителей и сами исполнители */
+	@OneToMany
 	private Set<Reply> Replays;
 
-	public Resolution(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public Resolution() {
+		this.Id = -1;
+		this.Document = null;
+		this.Content = "";
+		this.Author = null;
+		this.ResolDate = null;
+		this.PlanDate = null;
+		this.FactDate = null;
+		this.Resume = "";
+		this.Summary = "";
+		this.Category = null;
+		this.Replays = new HashSet<>();
 	}
 
-	public Resolution(Record Documnt){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public Resolution(Record Document){
+		this();
+		this.Document = Document;
 	}
 
 	public Resolution(long DocumentId){
@@ -67,94 +85,84 @@ public class Resolution implements Serializable{
 		throw new UnsupportedOperationException();
 	}
 
-	public long getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public long getId() {
+		return this.Id;
 	}
 
-	public void setContent(String Content){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public Record getDocument() {
+		return this.Document;
 	}
 
-	public String getContent(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	protected void setDocument(Record document) {
+		this.Document = document;
 	}
 
-	public void setAuthor(Department Author){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public String getContent() {
+		return this.Content;
 	}
 
-	public Department getAuthor(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setContent(String content) {
+		this.Content = content;
 	}
 
-	public void setResolDate(java.sql.Date ResolDate){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public Department getAuthor() {
+		return this.Author;
 	}
 
-	public java.sql.Date getResolDate(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	protected void setAuthor(Department author) {
+		this.Author = author;
 	}
 
-	public void setPlanDate(java.sql.Date PlanDate){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public Date getResolDate() {
+		return this.ResolDate;
 	}
 
-	public java.sql.Date getPlanDate(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setResolDate(Date resolDate) {
+		this.ResolDate = resolDate;
 	}
 
-	public void setFactDate(java.sql.Date FactDate){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public Date getPlanDate() {
+		return this.PlanDate;
 	}
 
-	public java.sql.Date getFactDate(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setPlanDate(Date planDate) {
+		this.PlanDate = planDate;
 	}
 
-	public void setResume(String Resume){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public Date getFactDate() {
+		return this.FactDate;
 	}
 
-	public String getResume(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setFactDate(Date factDate) {
+		this.FactDate = factDate;
 	}
 
-	public void setSummary(String Summary){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public String getResume() {
+		return this.Resume;
 	}
 
-	public void setCategory(CategoryResolution Category){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public void setResume(String resume) {
+		this.Resume = resume;
 	}
 
-	public CategoryResolution getCategory(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public String getSummary() {
+		return this.Summary;
 	}
 
-	public Record getDocument(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setSummary(String summary) {
+		this.Summary = summary;
 	}
 
-	public Set<Reply> getReplays(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public void setCategory(CategoryResolution category) {
+		this.Category = category;
+	}
+
+	public CategoryResolution getCategory() {
+		return this.Category;
+	}
+
+	public Set<Reply> getReplays() {
+		return this.Replays;
 	}
 
 }

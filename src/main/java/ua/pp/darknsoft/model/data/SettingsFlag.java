@@ -1,5 +1,5 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -22,35 +22,35 @@ public class SettingsFlag implements Serializable{
 	/** Описание настройки */
 	private String Description;
 
-	public SettingsFlag(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public SettingsFlag() {
+		this.Id = -1;
+		this.Name = "";
+		this.Description = "";
 	}
 
-	public int getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public int getId() {
+		return this.Id;
 	}
 
-	public void setName(String Name){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public String getName() {
+		return this.Name;
 	}
 
-	public String getName(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setName(String name) {
+		this.Name = name;
 	}
 
-	public void setDescription(String Description){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public String getDescription() {
+		return this.Description;
 	}
 
-	public String getDescription(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setDescription(String description) {
+		this.Description = description;
 	}
 
+	@Override
+	public String toString() {
+		return this.getName();
+	}	
 }
 

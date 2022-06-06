@@ -5,19 +5,29 @@ package ua.pp.darknsoft.model.data;
  * */
 public enum CorrespondentKind{
 
-	/** Входящий от организации */
+	/** 
+	 * Входящий от организации 
+	 * */
 	IncomingOrganization,
 
-	/** Входящий от гражданина */
+	/** 
+	 * Входящий от гражданина 
+	 * */
 	IncomingCitizen,
 
-	/** Сопроводительный */
+	/** 
+	 * Сопроводительный 
+	 * */
 	CoverLetter,
 
-	/** Исходящий к организации */
+	/** 
+	 * Исходящий к организации 
+	 * */
 	OutgoingOrganization,
 	
-	/** Исходящий к гражданину */
+	/** 
+	 * Исходящий к гражданину 
+	 * */
 	OutgoingCitizen
 }
 

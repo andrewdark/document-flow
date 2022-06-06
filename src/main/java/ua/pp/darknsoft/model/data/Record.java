@@ -1,14 +1,17 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
-import java.sql.*;
-import java.util.*;
+
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 /** 
  * "Тело" документа. Головной узел документа. 
  * К нему привязываются отстальные "части" документа 
@@ -21,6 +24,7 @@ public class Record implements Serializable{
 	private long Id;
 
 	/** Журнал(Группа документов в котором регистрируются документы */
+	@ManyToOne
 	private Docgroup Docgroup;
 
 	/** Порядковая часть номера документа */
@@ -30,7 +34,8 @@ public class Record implements Serializable{
 	private String Regnum;
 
 	/** Дата регистрации документа */
-	private java.sql.Date Regdate;
+	@Temporal(TemporalType.DATE)
+	private Date Regdate;
 
 	/** Состав/колличество листов */
 	private String Consist;
@@ -45,191 +50,195 @@ public class Record implements Serializable{
 	private boolean Collective;
 
 	/** Колличество подписей в обращении (Только для писем граждан) */
-	private int SignCount = 1;
+	private int SignCount;
 
 	/** Резолюции наложенные на документ */
+	@OneToMany
 	private Set<Resolution> Resolutions;
 
 	/** Вид доставки */
+	@ManyToOne
 	private Delivery Delivery;
 
 	/** Исполнитель документа (Только для исходящих и внутреней документации) */
+	@ManyToOne
 	private Department Executor;
 
 	/** Визы и Подписи */
+	@OneToMany
 	private Set<Vise> Vises;
 
 	/** Файлы прикрепленные к документу */
+	@OneToMany
 	private Set<FileLink> Files;
 
 	/** Перечень кореспондентов (только для входящих и граждан) */
+	@OneToMany
 	private Set<Correspondent> Correspondents;
 
 	/** Рубрикатор */
+	@OneToMany
 	private Set<Rubric> Rubrics;
 
 	/** Связки с другими документами */
+	@OneToMany
 	protected Set<LinkRecord> Links;
 
 	public Record(){
+		this.Id = -1;
+		this.Collective = false;
+		this.Consist = "";
+		this.Content = "";
+		this.Correspondents = new HashSet<>();
+		this.Delivery = null;
+		this.Docgroup = null;
+		this.Executor = null;
+		this.Files = new HashSet<>();
+		this.Links = new HashSet<>();
+		this.Note = "";
+		this.OrderNum = 0;
+		this.Regdate = null;
+		this.Regnum = "";
+		this.Resolutions = new HashSet<>();
+		this.Rubrics = new HashSet<>();
+		this.SignCount = 1;
+		this.Vises = new HashSet<>();
+	}
+
+	public Record(Docgroup Docgroup, Date RegDate){
+		this();
+		this.Docgroup = Docgroup;
+		this.Regdate = RegDate;
+	}
+
+	public Record(Docgroup Docgroup, Date RegDate, String RegNum){
+		this();
+		this.Docgroup = Docgroup;
+		this.Regdate = RegDate;
+		this.Regnum = RegNum;
+	}
+
+	public Record(long DocgroupId, Date RegDate){
 		// TODO add implementation
 		throw new UnsupportedOperationException();
 	}
 
-	public Record(Docgroup Docgroup, java.util.Date RegDate){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
-	}
-
-	public Record(Docgroup Docgroup, java.util.Date RegDate, String RegNum){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
-	}
-
-	public Record(long DocgroupId, java.util.Date RegDate){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
-	}
-
-	public Record(long DocgroupId, java.util.Date RegDate, String RegNum){
+	public Record(long DocgroupId, Date RegDate, String RegNum){
 		// TODO add implementation
 		throw new UnsupportedOperationException();
 	}
 
 	public long getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
 	public void setOrderNum(long OrderNum){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.OrderNum = OrderNum;
 	}
 
 	public long getOrderNum(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.OrderNum;
 	}
 
 	public void setRegnum(String Regnum){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Regnum = Regnum;
 	}
 
 	public String getRegnum(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Regnum;
 	}
 
-	public void setRegdate(java.sql.Date Regdate){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public void setRegdate(Date Regdate){
+		this.Regdate = Regdate;
 	}
 
-	public java.sql.Date getRegdate(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public Date getRegdate(){
+		return this.Regdate;
 	}
 
 	public void setConsist(String Consist){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Consist = Consist;
 	}
 
 	public String getConsist(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Consist;
 	}
 
 	public void setContent(String Content){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Content = Content;
 	}
 
 	public String getContent(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Content;
 	}
 
 	public void setNote(String Note){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Note = Note;
 	}
 
 	public String getNote(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Note;
 	}
 
 	public void setCollective(boolean Collective){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Collective = Collective;
 	}
 
 	public boolean isCollective(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Collective;
 	}
 
 	public void setSignCount(int SignCount){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.SignCount = SignCount;
 	}
 
 	public int getSignCount(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.SignCount;
 	}
 
 	public void setDelivery(Delivery Delivery){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Delivery = Delivery;
 	}
 
 	public Delivery getDelivery(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Delivery;
 	}
 
 	public Set<Resolution> getResolutions(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		return this.Resolutions;
 	}
 
 	public void setExecutor(Department Executor){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Executor = Executor;
 	}
 
 	public Department getExecutor(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Executor;
 	}
 
 	public Set<Vise> getVises(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		return this.Vises;
 	}
 
 	public Set<FileLink> getFiles(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		return this.Files;
 	}
 
 	public Set<Correspondent> getCorrespondents(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		return this.Correspondents;
 	}
 
 	public Set<Rubric> getRubrics(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		return this.Rubrics;
 	}
 
 	public Set<LinkRecord> getLinks(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		return this.Links;
 	}
 
+	@Override
+	public String toString() {
+		return this.getRegnum() + " " +this.getRegdate().toString();
+	}	
 }
 

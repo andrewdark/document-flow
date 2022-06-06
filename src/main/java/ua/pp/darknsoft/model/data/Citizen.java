@@ -1,7 +1,8 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
-import java.util.*;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -49,64 +50,61 @@ public class Citizen implements Serializable{
 	private Set<CitizenCategory> Category;
 
 	public Citizen(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Id = -1;
+		this.Fullname = "";
+		this.Address = "";
+		this.Deleted = false;
+		this.Category = new HashSet<CitizenCategory>();
+		this.Status = new HashSet<CitizenStatus>();
 	}
 
 	public long getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
 	public void setFullname(String Fullname){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Fullname = Fullname;
 	}
 
 	public String getFullname(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Fullname;
 	}
 
 	public void setAddress(String Address){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Address = Address;
 	}
 
 	public String getAddress(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Address;
 	}
 
 	protected void setDeleted(boolean Deleted){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Deleted = Deleted;
 	}
 
 	public boolean isDeleted(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Deleted;
 	}
 
-	private void setStatus(Set<CitizenStatus> Status){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	protected void setStatus(Set<CitizenStatus> Status){
+		this.Status = Status;
 	}
 
 	public Set<CitizenStatus> getStatus(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		return this.Status;
 	}
 
 	protected void setCategory(Set<CitizenCategory> Category){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Category = Category;
 	}
 
 	public Set<CitizenCategory> getCategory(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		return this.Category;
 	}
 
+	@Override
+	public String toString() {
+		return this.getFullname();
+	}
 }
 

@@ -25,44 +25,43 @@ public class Organization{
 	private boolean Deleted;
 
 	public Organization(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Id = -1;
+		this.Name = "";
+		this.Deleted = false;
+		this.Code = "";
 	}
 
 	public long getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
 	public void setName(String Name){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Name = Name;
 	}
 
 	public String getName(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Name;
 	}
 
 	public void setCode(String Code){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Code = Code;
 	}
 
 	public String getCode(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Code;
 	}
 
-	private void setDeleted(boolean Deleted){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	protected void setDeleted(boolean Deleted){
+		this.Deleted = Deleted;
 	}
 
 	public boolean isDeleted(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Deleted;
 	}
 
+	@Override
+	public String toString() {
+		return this.getName();
+	}	
 }
 

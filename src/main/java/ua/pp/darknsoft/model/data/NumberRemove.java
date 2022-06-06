@@ -1,8 +1,9 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /** 
  * Список удаленых порядковых номеров. Нужен 
@@ -10,30 +11,42 @@ import javax.persistence.Id;
  * номером "дырки". После регистрации, свободный 
  * номер из этого списка должен быть удален 
  * */
-public @Entity class NumberRemove implements Serializable{
+@Entity 
+public class NumberRemove implements Serializable{
 	
-	/** Идентификатор записи */
+	/** 
+	 * Идентификатор записи 
+	 * */
 	@Id 
 	@GeneratedValue 
 	private long Id;
 
-	/** Группа документов к которой привязана запись нумератора */
+	/** 
+	 * Группа документов к которой привязана запись нумератора 
+	 * */
+	@ManyToOne
 	private Docgroup Docgroup;
 
-	/** @see Numerator#Section Описание */
-	private int Section;
+	/** 
+	 * @see Numerator#Section Описание 
+	 * */
+	private String Section;
 
-	/** Порядковый номер удаленного документа */
+	/** 
+	 * Порядковый номер удаленного документа 
+	 * */
 	private long Num;
 
 	public NumberRemove(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Id = -1;
+		this.Docgroup = null;
+		this.Section = "";
+		this.Num = 0;
 	}
 
 	public NumberRemove(Docgroup Docgroup){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this();
+		this.Docgroup = Docgroup;
 	}
 
 	public NumberRemove(int DocgroupId){
@@ -42,38 +55,31 @@ public @Entity class NumberRemove implements Serializable{
 	}
 
 	public long getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
-	public void setSection(int Section){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public void setSection(String Section){
+		this.Section = Section;
 	}
 
-	public int getSection(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public String getSection(){
+		return this.Section;
 	}
 
 	public void setNum(long Num){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Num = Num;
 	}
 
 	public long getNum(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Num;
 	}
 
 	protected void setDocgroup(Docgroup Docgroup){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Docgroup = Docgroup;
 	}
 
 	public Docgroup getDocgroup(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Docgroup;
 	}
 
 }

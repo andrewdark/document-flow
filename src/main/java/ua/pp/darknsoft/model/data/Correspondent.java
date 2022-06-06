@@ -1,13 +1,15 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
-import java.sql.*;
+
+import java.io.Serializable;
+import java.sql.Date;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 /** 
  * Таблица связи для организации связи многие-ко-многим 
  * с документом. И для уточнениия характера этой связи. 
@@ -15,117 +17,163 @@ import javax.persistence.OneToOne;
 @Entity 
 public class Correspondent implements Serializable{
 
-	/** Идентификатор записи */
+	/** 
+	 * Идентификатор записи 
+	 * */
 	@Id 
 	@GeneratedValue 
 	private long Id;
 
-	/** Ссылка на документ содержащего корреспондента */
-	@OneToOne(optional=true) 
+	/** 
+	 * Ссылка на документ содержащего корреспондента 
+	 * */
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Record Document;
 
-	/** Исходящий номер письма корреспондента или вхоящий адресата */
+	/** 
+	 * Исходящий номер письма корреспондента или вхоящий адресата 
+	 * */
 	private String OutNum;
 
-	/** Исходящая дата письма корреспондента или вхоящий адресата */
+	/** 
+	 * Исходящая дата письма корреспондента или вхоящий адресата 
+	 * */
+	@Temporal(TemporalType.DATE)
 	private Date OutDate;
 
-	/** Примечание */
+	/** 
+	 * Примечание 
+	 * */
 	private String Note;
 
-	/** Кто подписал */
+	/** 
+	 * Кто подписал 
+	 * */
 	private String Signatory;
 
-	/** Ссылка на организацию-корреспондента */
-	@OneToOne(optional=true) 
+	/** 
+	 * Ссылка на организацию-корреспондента 
+	 * */
+	@ManyToOne 
 	private Organization Organization;
 
-	/** Ссылка на физлицо-корреспондента */
-	@OneToOne(optional=true) 
+	/** 
+	 * Ссылка на физлицо-корреспондента 
+	 * */
+	@ManyToOne
 	private Citizen Citizen;
 
-	/** Варианты корреспондентов */
+	/** 
+	 * Варианты корреспондентов 
+	 * */
+	@Enumerated
 	private CorrespondentKind Kind;
 
 	public Correspondent(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Id = -1;
+		this.Document = null;
+		this.Kind = null;
+		this.OutNum = "";
+		this.OutDate = null;
+		this.Note = "";
+		this.Signatory = "";
+		this.Organization = null;
+		this.Citizen = null;
 	}
 
 	public Correspondent(Record Document){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this();
+		this.Document = Document;
 	}
 
 	public long getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
 	public void setOutNum(String OutNum){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.OutNum = OutNum;
+	}
+
+	public String getOutNum(){
+		return this.OutNum;
 	}
 
 	public void setOutDate(Date OutDate){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.OutDate = OutDate;
 	}
 
 	public Date getOutDate(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.OutDate;
 	}
 
 	public void setNote(String Note){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Note = Note;
 	}
 
 	public String getNote(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Note;
 	}
 
 	public void setSignatory(String Signatory){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Signatory = Signatory;
 	}
 
 	public String getSignatory(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Signatory;
 	}
 
 	protected void setOrganization(Organization Organization){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Organization = Organization;
 	}
 
 	public Organization getOrganization(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Organization;
 	}
 
 	protected void setCitizen(Citizen Citizen){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Citizen = Citizen;
 	}
 
 	public Citizen getCitizen(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Citizen;
 	}
 
 	protected void setDocument(Record Document){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Document = Document;
 	}
 
 	public Record getDocument(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Document;
 	}
 
+	public CorrespondentKind getKind() {
+		return this.Kind;
+	}
+
+	protected void setKind(CorrespondentKind Kind) {
+		this.Kind = Kind;
+	}
+
+	@Override
+	public String toString() {
+		switch (this.Kind) {
+			case IncomingOrganization:
+				if (this.getOrganization()!=null)
+					return this.getOrganization().toString();
+			case IncomingCitizen:
+				if (this.getCitizen()!=null)
+					return this.getCitizen().toString();
+			case CoverLetter:
+				if (this.getOrganization()!=null)
+					return this.getOrganization().toString();
+			case OutgoingCitizen:
+				if (this.getCitizen()!=null)
+					return this.getCitizen().toString();
+			case OutgoingOrganization:
+				if (this.getOrganization()!=null)
+					return this.getOrganization().toString();
+		}
+		return "";
+	}	
 }
 

@@ -1,12 +1,10 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
+
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 /** 
  * Список видов доставки 
  * */
@@ -19,39 +17,41 @@ public class Delivery implements Serializable{
 	private int Id;
 
 	/** Наименование вида доставки */
-	private java.lang.String Name;
+	private String Name;
 
 	/** Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы */
 	private boolean Deleted;
 
 	public Delivery(){
-		// TODO add implementation
+		this.Id = -1;
+		this.Name = "";
+		this.Deleted = false;
 	}
 
 	public int getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
 	public void setName(String Name){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Name = Name;
 	}
 
 	public String getName(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Name;
 	}
 
 	protected void setDeleted(boolean Deleted){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Deleted = Deleted;
 	}
 
 	public boolean isDeleted(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Deleted;
 	}
+
+	@Override
+	public String toString() {
+		return this.getName();
+	}	
 
 }
 

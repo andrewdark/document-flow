@@ -1,7 +1,7 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
+import java.io.Serializable;
+
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -11,64 +11,74 @@ import javax.persistence.Id;
 @Entity 
 public class Settings implements Serializable{
 	
-	/** Идентификатор записи */
+	/** 
+	 * Идентификатор записи 
+	 * */
 	@Id 
 	@GeneratedValue 
 	private long Id;
 
-	/** ССылка на пользователя для которого предназначени эти настройки. Может быть пустым в случае общего характера настройки. */
+	/** 
+	 * Ссылка на пользователя для которого предназначени 
+	 * эти настройки. Может быть пустым в случае 
+	 * общего характера настройки. 
+	 * */
 	private User User;
 
-	/** Номенклатура настройки */
+	/** 
+	 * Номенклатура настройки 
+	 * */
 	private SettingsFlag Flag;
 
-	/** Заданое значение для настройки */
+	/** 
+	 * Заданое значение для настройки 
+	 * */
 	private String Value;
 
-	public Settings(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public Settings() {
+		this.Id = -1;
+		this.User = null;
+		this.Flag = null;
+		this.Value = "";
 	}
 
 	public Settings(User User){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this();
+		this.User = User;
+	}
+	
+	public long getId() {
+		return this.Id;
 	}
 
-	public void setFlag(SettingsFlag Flag){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public User getUser() {
+		return this.User;
 	}
 
-	public SettingsFlag getFlag(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	protected void setUser(User user) {
+		this.User = user;
 	}
 
-	public long getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public SettingsFlag getFlag() {
+		return this.Flag;
 	}
 
-	public void setValue(String Value){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public void setFlag(SettingsFlag flag) {
+		this.Flag = flag;
 	}
 
-	public String getValue(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public String getValue() {
+		return this.Value;
 	}
 
-	public void setUser(User User){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public void setValue(String value) {
+		this.Value = value;
 	}
 
-	public User getUser(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
-	}
+	@Override
+	public String toString() {
+		return this.getValue();
+	}	
 
 }
 

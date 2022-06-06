@@ -1,14 +1,14 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
-import java.sql.*;
+import java.io.Serializable;
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /** 
  * Отчеты исполнителей 
@@ -22,9 +22,11 @@ public class Reply implements Serializable{
 	private long Id;
 
 	/** Ссылка на резолюцию содержащих ответы/исполнителей */
+	@ManyToOne
 	private Resolution Resolution;
 
 	/** Дата отчета */
+	@Temporal(TemporalType.DATE)
 	private Date ReplyDate;
 
 	/** Варианты ответа */
@@ -32,61 +34,73 @@ public class Reply implements Serializable{
 	private CategoryReply Category;
 
 	/** Ссылка на исполнителя */
-	protected Department Executor;
+	@ManyToOne
+	private Department Executor;
+
+	private String Content;
 
 	public Reply(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Id = -1;
+		this.Content = "";
+		this.Category = null;
+		this.Executor = null;
+		this.ReplyDate = null;
+		this.Resolution = null;
 	}
 
-	public Reply(Resolution Resolution){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public Reply(Resolution Resolution, Department Executor){
+		this();
+		this.Resolution = Resolution;
+		this.Executor = Executor;
 	}
 
-	public Reply(long ResolutionId){
+	public Reply(long ResolutionId, long ExecutorId){
 		// TODO add implementation
 		throw new UnsupportedOperationException();
 	}
 
 	public long getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
-	public void setReplyDate(Date ReplyDate){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public String getContent() {
+		return this.Content;
 	}
 
-	public Date getReplyDate(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setContent(String Content) {
+		this.Content = Content;
+	}
+	
+	public Resolution getResolution() {
+		return this.Resolution;
 	}
 
-	public void setCategory(CategoryReply Category){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	protected void setResolution(Resolution resolution) {
+		this.Resolution = resolution;
 	}
 
-	public CategoryReply getCategory(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public Date getReplyDate() {
+		return this.ReplyDate;
 	}
 
-	public Resolution getResolution(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setReplyDate(Date replyDate) {
+		this.ReplyDate = replyDate;
 	}
 
-	public void setExecutor(Department Executor){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+	public CategoryReply getCategory() {
+		return this.Category;
 	}
 
-	public Department getExecutor(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+	public void setCategory(CategoryReply category) {
+		this.Category = category;
+	}
+
+	public Department getExecutor() {
+		return this.Executor;
+	}
+
+	protected void setExecutor(Department executor) {
+		this.Executor = executor;
 	}
 
 }

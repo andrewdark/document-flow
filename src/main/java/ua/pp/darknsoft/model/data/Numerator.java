@@ -3,6 +3,7 @@ import java.io.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /** 
  * Хранение последнего порядкового номера, 
@@ -18,23 +19,34 @@ public class Numerator implements Serializable{
 	@GeneratedValue 
 	private int Id;
 
-	/** Группа документов к которой привязана запись нумератора */
+	/** 
+	 * Группа документов к которой привязана запись нумератора 
+	 * */
+	@ManyToOne
 	private Docgroup Docgroup;
 
-	/** Год ведения подсчета (Можно поразмышлять что делать если прошла реорганизация, или нумерация привязана к созыву сессии) */
+	/** 
+	 * Год ведения подсчета (Можно поразмышлять что делать 
+	 * если прошла реорганизация, или нумерация привязана 
+	 * к созыву сессии) 
+	 * */
 	private String Section;
 
-	/** Порядковый номер следующего документа */
+	/** 
+	 * Порядковый номер следующего документа 
+	 * */
 	private long LastNum;
 
 	public Numerator(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Id = -1;
+		this.Docgroup = null;
+		this.Section = "";
+		this.LastNum = 1;
 	}
 
 	public Numerator(Docgroup Docgroup){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this();
+		this.Docgroup = Docgroup;
 	}
 
 	public Numerator(int DocgroupId){
@@ -43,38 +55,31 @@ public class Numerator implements Serializable{
 	}
 
 	public int getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
 	public void setSection(String Section){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Section = Section;
 	}
 
 	public String getSection(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Section;
 	}
 
 	public void setLastNum(long LastNum){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.LastNum = LastNum;
 	}
 
 	public long getLastNum(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.LastNum;
 	}
 
 	protected void setDocgroup(Docgroup Docgroup){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Docgroup = Docgroup;
 	}
 
 	public Docgroup getDocgroup(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Docgroup;
 	}
 
 }

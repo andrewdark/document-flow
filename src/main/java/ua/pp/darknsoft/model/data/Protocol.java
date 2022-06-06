@@ -1,9 +1,16 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
-import java.sql.*;
+
+import java.io.Serializable;
+import java.sql.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /** 
  * Протокол работы с документом. Отражает 
@@ -17,12 +24,16 @@ public class Protocol implements Serializable{
 	private long Id;
 
 	/** Пользователь которого логируем */
+	@ManyToOne(fetch = FetchType.LAZY)
 	private User User;
 
 	/** Действие которое логируется */
+	@ManyToOne	
 	private Operation Operation;
 
 	/** Время события */
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(columnDefinition = "CURRENT_TIMESTAMP")
 	private Date Date;
 
 	/** Ссылка на объект, изменения в котором мы логируем
@@ -30,53 +41,48 @@ public class Protocol implements Serializable{
 	private long LinkId;
 
 	public Protocol(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Id = -1;
+		//this.Date = new Date(Calendar.getInstance().getTime().getTime());
+		this.Date = null;
+		this.User = null;
+		this.Operation = null;
+		this.LinkId = 0;
 	}
 
 	public long getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
 	public void setDate(Date Date){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Date = Date;
 	}
 
 	public Date getDate(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Date;
 	}
 
 	public void setLinkId(long LinkId){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.LinkId = LinkId;
 	}
 
 	public long getLinkId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.LinkId;
 	}
 
 	public void setOperation(Operation Operation){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Operation = Operation;
 	}
 
 	public Operation getOperation(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Operation;
 	}
 
 	public void setUser(User User){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.User = User ;
 	}
 
 	public User getUser(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.User;
 	}
 
 }

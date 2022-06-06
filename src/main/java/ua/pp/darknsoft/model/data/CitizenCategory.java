@@ -1,6 +1,6 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,12 +8,15 @@ import javax.persistence.Id;
  * Справочник социальной категорий граждан. 
  * Существует предопределенный справочник. 
  * */
-public @Entity class CitizenCategory implements Serializable{
+@Entity 
+public class CitizenCategory implements Serializable{
 	
 	/** 
 	 * Идентификатор записи 
 	 * */
-	private @Id @GeneratedValue int Id;
+	@Id 
+	@GeneratedValue 
+	private int Id;
 
 	/** Наименование социальной категории гражданина */
 	private String Name;
@@ -22,34 +25,34 @@ public @Entity class CitizenCategory implements Serializable{
 	private boolean Deleted;
 
 	public CitizenCategory(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Id = -1;
+		this.Name = "";
+		this.Deleted = false;
 	}
 
 	public int getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
 	public void setName(String Name){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Name = Name;
 	}
 
 	public String getName(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Name;
 	}
 
 	protected void setDeleted(boolean Deleted){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Deleted = Deleted;
 	}
 
 	public boolean isDeleted(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Deleted;
 	}
 
+	@Override
+	public String toString() {
+		return this.getName();
+	}
 }
 

@@ -1,8 +1,11 @@
 package ua.pp.darknsoft.model.data;
-import java.io.*;
+
+import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /** 
  * Связка между документами 
@@ -16,25 +19,32 @@ public class LinkRecord implements Serializable{
 	private long Id;
 
 	/** Тип связки */
+	@Enumerated
 	private LinkType Type;
 
 	/** Ссылка на основной документ */
+	@ManyToOne
 	private Record Document;
 
 	/** Ссылка на связаный документ */
+	@ManyToOne
 	private Record Link;
 
 	/** Примечание / информация о виртуальном документе */
-	private java.lang.String Note;
+	private String Note;
 
 	public LinkRecord(){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Id = -1;
+		this.Type = null;
+		this.Document = null;
+		this.Link = null;
+		this.Note = "";
 	}
 
 	public LinkRecord(Record Document, Record Link){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this();
+		this.Document = Document;
+		this.Link = Link;
 	}
 
 	public LinkRecord(long DocumentId, long LinkId){
@@ -43,9 +53,10 @@ public class LinkRecord implements Serializable{
 	}
 
 	public LinkRecord(Record Document, Record Link, LinkType Type){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
-	}
+		this();
+		this.Type = Type;
+		this.Document = Document;
+		this.Link = Link;	}
 
 	public LinkRecord(long DocumentId, long LinkId, int TypeId){
 		// TODO add implementation
@@ -53,49 +64,47 @@ public class LinkRecord implements Serializable{
 	}
 
 	public long getId(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Id;
 	}
 
 	public void setNote(String Note){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Note = Note;
 	}
 
 	public String getNote(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Note;
 	}
 
 	protected void setDocument(Record Document){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Document = Document;
 	}
 
 	public Record getDocument(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Document;
 	}
 
 	public void setLink(Record Link){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Link = Link;
 	}
 
 	public Record getLink(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Link;
 	}
 
 	public void setType(LinkType Type){
-		// TODO add implementation
-		throw new UnsupportedOperationException();
+		this.Type = Type;
 	}
 
 	public LinkType getType(){
-		// TODO add implementation and return statement
-		throw new UnsupportedOperationException();
+		return this.Type;
 	}
+
+	@Override
+	public String toString() {
+		if (this.getLink()!=null)
+			return this.getLink().toString();
+		return this.Note;	
+	}	
 
 }
 
