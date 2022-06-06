@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 @Entity 
 public class Department implements Serializable{
 
+	private static final long serialVersionUID = -8551242211985208681L;
+	
 	/** 
 	 * Идентификатор записи 
 	 * */

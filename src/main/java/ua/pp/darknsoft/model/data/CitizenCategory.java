@@ -11,6 +11,8 @@ import javax.persistence.Id;
 @Entity 
 public class CitizenCategory implements Serializable{
 	
+	private static final long serialVersionUID = -3597602172012857345L;
+
 	/** 
 	 * Идентификатор записи 
 	 * */

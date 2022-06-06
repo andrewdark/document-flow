@@ -2,7 +2,6 @@ package ua.pp.darknsoft.model.data;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -13,13 +12,15 @@ import javax.persistence.ManyToOne;
 @Entity 
 public class LinkRecord implements Serializable{
 	
+	private static final long serialVersionUID = 4638047586810335138L;
+
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 
 	private long Id;
 
 	/** Тип связки */
-	@Enumerated
+	@ManyToOne
 	private LinkType Type;
 
 	/** Ссылка на основной документ */

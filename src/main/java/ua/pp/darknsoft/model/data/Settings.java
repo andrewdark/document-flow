@@ -4,12 +4,15 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /** 
  * Настройки работы клиента 
  * */
 @Entity 
 public class Settings implements Serializable{
+	
+	private static final long serialVersionUID = -142298292332956352L;
 	
 	/** 
 	 * Идентификатор записи 
@@ -23,11 +26,13 @@ public class Settings implements Serializable{
 	 * эти настройки. Может быть пустым в случае 
 	 * общего характера настройки. 
 	 * */
+	@OneToOne
 	private User User;
 
 	/** 
 	 * Номенклатура настройки 
 	 * */
+	@OneToOne
 	private SettingsFlag Flag;
 
 	/** 

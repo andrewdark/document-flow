@@ -11,6 +11,8 @@ import javax.persistence.Id;
 @Entity 
 public class Delivery implements Serializable{
 	
+	private static final long serialVersionUID = -7994948593975921064L;
+	
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 

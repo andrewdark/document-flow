@@ -1,6 +1,6 @@
 package ua.pp.darknsoft.model.data;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -16,6 +16,8 @@ import javax.persistence.TemporalType;
 @Entity 
 public class Vise implements Serializable{
 
+	private static final long serialVersionUID = 7958757576135122211L;
+	
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 

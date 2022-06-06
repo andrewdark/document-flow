@@ -10,6 +10,9 @@ import javax.persistence.Id;
  * */
 @Entity 
 public class CitizenStatus implements Serializable{
+
+	private static final long serialVersionUID = 3056867703435571803L;
+	
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 

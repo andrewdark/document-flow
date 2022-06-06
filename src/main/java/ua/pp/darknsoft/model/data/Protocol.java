@@ -1,9 +1,8 @@
 package ua.pp.darknsoft.model.data;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,6 +17,9 @@ import javax.persistence.TemporalType;
  * */
 @Entity 
 public class Protocol implements Serializable{
+
+	private static final long serialVersionUID = -2320106839045012153L;
+
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 
@@ -33,7 +35,6 @@ public class Protocol implements Serializable{
 
 	/** Время события */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(columnDefinition = "CURRENT_TIMESTAMP")
 	private Date Date;
 
 	/** Ссылка на объект, изменения в котором мы логируем

@@ -13,6 +13,9 @@ import javax.persistence.Lob;
  * */
 @Entity 
 public class FileLink implements Serializable{
+
+	private static final long serialVersionUID = -2369510938525398174L;
+	
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 

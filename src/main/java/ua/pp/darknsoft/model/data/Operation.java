@@ -11,6 +11,8 @@ import javax.persistence.Id;
 @Entity 
 public class Operation implements Serializable{
 	
+	private static final long serialVersionUID = 5713766026955387080L;
+	
 	/** 
 	 * Идентификатор записи 
 	 * */

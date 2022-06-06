@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 @Entity 
 public class NumberRemove implements Serializable{
 	
+	private static final long serialVersionUID = 4497439856980339924L;
+	
 	/** 
 	 * Идентификатор записи 
 	 * */

@@ -116,12 +116,12 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${version.org.hibernate}</version>
-            <exclusions>
+            <!--exclusions>
                 <exclusion>
                     <groupId>org.jboss.logging</groupId>
                     <artifactId>jboss-logging</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions-->
         </dependency>
         <!-- #####################################################################-->
         <!-- Servlet Spec -->

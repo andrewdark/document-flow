@@ -11,6 +11,8 @@ import javax.persistence.OneToOne;
 @Entity 
 public class LinkType implements Serializable{
 	
+	private static final long serialVersionUID = -1262558019888646204L;
+	
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 

@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 @Entity 
 public class Numerator implements Serializable{
 
+	private static final long serialVersionUID = 8726390717611655608L;
+	
 	/** 
 	 * Идентификатор записи 
 	 * */

@@ -1,7 +1,7 @@
 package ua.pp.darknsoft.model.data;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -17,6 +17,8 @@ import javax.persistence.TemporalType;
 @Entity 
 public class Correspondent implements Serializable{
 
+	private static final long serialVersionUID = -8940979865884790204L;
+	
 	/** 
 	 * Идентификатор записи 
 	 * */

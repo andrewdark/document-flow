@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
  * */
 @Entity 
 public class Rubric implements Serializable{
+
+	private static final long serialVersionUID = 4834180509833455741L;
+	
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 

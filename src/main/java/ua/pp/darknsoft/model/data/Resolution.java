@@ -1,6 +1,6 @@
 package ua.pp.darknsoft.model.data;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,6 +17,9 @@ import javax.persistence.TemporalType;
  * */
 @Entity 
 public class Resolution implements Serializable{
+
+	private static final long serialVersionUID = -3486374283833135761L;
+	
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 

@@ -17,6 +17,8 @@ import javax.persistence.ManyToMany;
 @Entity 
 public class Citizen implements Serializable{
 	
+	private static final long serialVersionUID = -1800638145313484296L;
+	
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 

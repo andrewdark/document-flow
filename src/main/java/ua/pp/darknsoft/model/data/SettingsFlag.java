@@ -1,7 +1,7 @@
 package ua.pp.darknsoft.model.data;
 import java.io.Serializable;
+
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -10,6 +10,8 @@ import javax.persistence.Id;
  * */
 @Entity 
 public class SettingsFlag implements Serializable{
+	
+	private static final long serialVersionUID = -5755708823061137368L;
 	
 	/** Идентификатор записи */
 	@Id 

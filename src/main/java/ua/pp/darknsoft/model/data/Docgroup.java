@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 @Entity 
 public class Docgroup implements Serializable{
 	
+	private static final long serialVersionUID = -8556100167510411343L;
+	
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 

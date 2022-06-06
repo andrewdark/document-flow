@@ -11,6 +11,9 @@ import javax.persistence.OneToMany;
  *  */
 @Entity 
 public class User implements Serializable{
+
+	private static final long serialVersionUID = -2475548608804521218L;
+	
 	/** Идентификатор записи */
 	@Id 
 	@GeneratedValue 

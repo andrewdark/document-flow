@@ -1,5 +1,7 @@
 package ua.pp.darknsoft.model.data;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,7 +10,9 @@ import javax.persistence.Id;
  * Интерактивно пополняемый. 
  * */
 @Entity 
-public class Organization{
+public class Organization implements Serializable{
+	
+	private static final long serialVersionUID = -4545818359231970370L;
 	
 	/** Идентификатор записи */
 	@Id 
