@@ -1,4 +1,5 @@
 package ua.pp.darknsoft.model.data;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -6,17 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-/** 
+
+/**
  * Список пользователей
- *  */
-@Entity 
-public class User implements Serializable{
+ */
+@Entity
+public class UserEntry implements Serializable {
 
 	private static final long serialVersionUID = -2475548608804521218L;
-	
+
 	/** Идентификатор записи */
-	@Id 
-	@GeneratedValue 
+	@Id
+	@GeneratedValue
 	private int Id;
 
 	/** Читаемое имя пользователя */
@@ -35,10 +37,13 @@ public class User implements Serializable{
 	private boolean Deleted;
 
 	/** Настройки пользователя */
-	@OneToMany
+	@OneToMany(mappedBy = "User")
 	private Set<Settings> Settings;
 
-	public User() {
+	@OneToMany(mappedBy = "User")
+	private Set<Protocol> Protocols;
+
+	public UserEntry() {
 		this.Id = -1;
 		this.Name = "";
 		this.Login = "";
@@ -96,5 +101,8 @@ public class User implements Serializable{
 		return this.Settings;
 	}
 
-}
+	public Set<Protocol> getProtocols() {
+		return Protocols;
+	}
 
+}

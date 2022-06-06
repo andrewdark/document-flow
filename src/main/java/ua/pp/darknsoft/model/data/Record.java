@@ -6,24 +6,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-/** 
- * "Тело" документа. Головной узел документа. 
- * К нему привязываются отстальные "части" документа 
- * */
-@Entity 
-public class Record implements Serializable{
+
+/**
+ * "Тело" документа. Головной узел документа.
+ * К нему привязываются отстальные "части" документа
+ */
+@Entity
+public class Record implements Serializable {
 
 	private static final long serialVersionUID = 908771635616694112L;
-	
+
 	/** Идентификатор записи */
-	@Id 
-	@GeneratedValue 
+	@Id
+	@GeneratedValue
 	private long Id;
 
 	/** Журнал(Группа документов в котором регистрируются документы */
@@ -56,38 +59,38 @@ public class Record implements Serializable{
 	private int SignCount;
 
 	/** Резолюции наложенные на документ */
-	@OneToMany
+	@OneToMany(mappedBy = "Document")
 	private Set<Resolution> Resolutions;
 
 	/** Вид доставки */
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Delivery Delivery;
 
 	/** Исполнитель документа (Только для исходящих и внутреней документации) */
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Department Executor;
 
 	/** Визы и Подписи */
-	@OneToMany
+	@OneToMany(mappedBy = "Document")
 	private Set<Vise> Vises;
 
 	/** Файлы прикрепленные к документу */
-	@OneToMany
+	@OneToMany(mappedBy = "Document")
 	private Set<FileLink> Files;
 
 	/** Перечень кореспондентов (только для входящих и граждан) */
-	@OneToMany
+	@OneToMany(mappedBy = "Document")
 	private Set<Correspondent> Correspondents;
 
 	/** Рубрикатор */
-	@OneToMany
+	@ManyToMany
 	private Set<Rubric> Rubrics;
 
 	/** Связки с другими документами */
-	@OneToMany
+	@OneToMany(mappedBy = "Document")
 	protected Set<LinkRecord> Links;
 
-	public Record(){
+	public Record() {
 		this.Id = -1;
 		this.Collective = false;
 		this.Consist = "";
@@ -108,140 +111,139 @@ public class Record implements Serializable{
 		this.Vises = new HashSet<>();
 	}
 
-	public Record(Docgroup Docgroup, Date RegDate){
+	public Record(Docgroup Docgroup, Date RegDate) {
 		this();
 		this.Docgroup = Docgroup;
 		this.Regdate = RegDate;
 	}
 
-	public Record(Docgroup Docgroup, Date RegDate, String RegNum){
+	public Record(Docgroup Docgroup, Date RegDate, String RegNum) {
 		this();
 		this.Docgroup = Docgroup;
 		this.Regdate = RegDate;
 		this.Regnum = RegNum;
 	}
 
-	public Record(long DocgroupId, Date RegDate){
+	public Record(long DocgroupId, Date RegDate) {
 		// TODO add implementation
 		throw new UnsupportedOperationException();
 	}
 
-	public Record(long DocgroupId, Date RegDate, String RegNum){
+	public Record(long DocgroupId, Date RegDate, String RegNum) {
 		// TODO add implementation
 		throw new UnsupportedOperationException();
 	}
 
-	public long getId(){
+	public long getId() {
 		return this.Id;
 	}
 
-	public void setOrderNum(long OrderNum){
+	public void setOrderNum(long OrderNum) {
 		this.OrderNum = OrderNum;
 	}
 
-	public long getOrderNum(){
+	public long getOrderNum() {
 		return this.OrderNum;
 	}
 
-	public void setRegnum(String Regnum){
+	public void setRegnum(String Regnum) {
 		this.Regnum = Regnum;
 	}
 
-	public String getRegnum(){
+	public String getRegnum() {
 		return this.Regnum;
 	}
 
-	public void setRegdate(Date Regdate){
+	public void setRegdate(Date Regdate) {
 		this.Regdate = Regdate;
 	}
 
-	public Date getRegdate(){
+	public Date getRegdate() {
 		return this.Regdate;
 	}
 
-	public void setConsist(String Consist){
+	public void setConsist(String Consist) {
 		this.Consist = Consist;
 	}
 
-	public String getConsist(){
+	public String getConsist() {
 		return this.Consist;
 	}
 
-	public void setContent(String Content){
+	public void setContent(String Content) {
 		this.Content = Content;
 	}
 
-	public String getContent(){
+	public String getContent() {
 		return this.Content;
 	}
 
-	public void setNote(String Note){
+	public void setNote(String Note) {
 		this.Note = Note;
 	}
 
-	public String getNote(){
+	public String getNote() {
 		return this.Note;
 	}
 
-	public void setCollective(boolean Collective){
+	public void setCollective(boolean Collective) {
 		this.Collective = Collective;
 	}
 
-	public boolean isCollective(){
+	public boolean isCollective() {
 		return this.Collective;
 	}
 
-	public void setSignCount(int SignCount){
+	public void setSignCount(int SignCount) {
 		this.SignCount = SignCount;
 	}
 
-	public int getSignCount(){
+	public int getSignCount() {
 		return this.SignCount;
 	}
 
-	public void setDelivery(Delivery Delivery){
+	public void setDelivery(Delivery Delivery) {
 		this.Delivery = Delivery;
 	}
 
-	public Delivery getDelivery(){
+	public Delivery getDelivery() {
 		return this.Delivery;
 	}
 
-	public Set<Resolution> getResolutions(){
+	public Set<Resolution> getResolutions() {
 		return this.Resolutions;
 	}
 
-	public void setExecutor(Department Executor){
+	public void setExecutor(Department Executor) {
 		this.Executor = Executor;
 	}
 
-	public Department getExecutor(){
+	public Department getExecutor() {
 		return this.Executor;
 	}
 
-	public Set<Vise> getVises(){
+	public Set<Vise> getVises() {
 		return this.Vises;
 	}
 
-	public Set<FileLink> getFiles(){
+	public Set<FileLink> getFiles() {
 		return this.Files;
 	}
 
-	public Set<Correspondent> getCorrespondents(){
+	public Set<Correspondent> getCorrespondents() {
 		return this.Correspondents;
 	}
 
-	public Set<Rubric> getRubrics(){
+	public Set<Rubric> getRubrics() {
 		return this.Rubrics;
 	}
 
-	public Set<LinkRecord> getLinks(){
+	public Set<LinkRecord> getLinks() {
 		return this.Links;
 	}
 
 	@Override
 	public String toString() {
-		return this.getRegnum() + " " +this.getRegdate().toString();
-	}	
+		return this.getRegnum() + " " + this.getRegdate().toString();
+	}
 }
-

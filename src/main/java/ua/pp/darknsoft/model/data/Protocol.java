@@ -3,6 +3,7 @@ package ua.pp.darknsoft.model.data;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,80 +12,82 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/** 
- * Протокол работы с документом. Отражает 
- * любые изменения в нем 
- * */
-@Entity 
-public class Protocol implements Serializable{
+/**
+ * Протокол работы с документом. Отражает
+ * любые изменения в нем
+ */
+@Entity
+public class Protocol implements Serializable {
 
 	private static final long serialVersionUID = -2320106839045012153L;
 
 	/** Идентификатор записи */
-	@Id 
-	@GeneratedValue 
+	@Id
+	@GeneratedValue
 	private long Id;
 
 	/** Пользователь которого логируем */
 	@ManyToOne(fetch = FetchType.LAZY)
-	private User User;
+	private UserEntry User;
 
 	/** Действие которое логируется */
-	@ManyToOne	
+	@ManyToOne
 	private Operation Operation;
 
 	/** Время события */
+	//@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date Date;
 
-	/** Ссылка на объект, изменения в котором мы логируем
-	 *  */
-	private long LinkId;
+	/**
+	 * Ссылка на объект, изменения в котором мы логируем
+	 */
+	@Column(name = "link_id")
+	private long Link;
 
-	public Protocol(){
+	public Protocol() {
 		this.Id = -1;
-		//this.Date = new Date(Calendar.getInstance().getTime().getTime());
+		//this.Date = java.util.Calendar.getInstance().getTime();
 		this.Date = null;
 		this.User = null;
 		this.Operation = null;
-		this.LinkId = 0;
+		this.Link = 0;
 	}
 
-	public long getId(){
+	public long getId() {
 		return this.Id;
 	}
 
-	public void setDate(Date Date){
+	public void setDate(Date Date) {
 		this.Date = Date;
 	}
 
-	public Date getDate(){
+	public Date getDate() {
 		return this.Date;
 	}
 
-	public void setLinkId(long LinkId){
-		this.LinkId = LinkId;
+	public void setLink(long Link) {
+		this.Link = Link;
 	}
 
-	public long getLinkId(){
-		return this.LinkId;
+	public long getLink() {
+		return this.Link;
 	}
 
-	public void setOperation(Operation Operation){
+	public void setOperation(Operation Operation) {
 		this.Operation = Operation;
 	}
 
-	public Operation getOperation(){
+	public Operation getOperation() {
 		return this.Operation;
 	}
 
-	public void setUser(User User){
-		this.User = User ;
+	public void setUser(UserEntry User) {
+		this.User = User;
 	}
 
-	public User getUser(){
+	public UserEntry getUser() {
 		return this.User;
 	}
 
 }
-

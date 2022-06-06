@@ -10,54 +10,55 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-/** 
- * Справочник подразделений и должностных лиц 
- * */
-@Entity 
-public class Department implements Serializable{
+
+/**
+ * Справочник подразделений и должностных лиц
+ */
+@Entity
+public class Department implements Serializable {
 
 	private static final long serialVersionUID = -8551242211985208681L;
-	
-	/** 
-	 * Идентификатор записи 
-	 * */
-	@Id 
-	@GeneratedValue 
+
+	/**
+	 * Идентификатор записи
+	 */
+	@Id
+	@GeneratedValue
 	private long Id;
 
-	/** 
-	 * Ссылка на родительский элемент 
-	 * */
-	@ManyToOne(fetch = FetchType.EAGER)
+	/**
+	 * Ссылка на родительский элемент
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Department Parent;
 
-	/** 
-	 * Список дочерних элементов 
-	 * */
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Parent")
+	/**
+	 * Список дочерних элементов
+	 */
+	@OneToMany(mappedBy = "Parent")
 	private Set<Department> Chields;
 
-	/** 
-	 * Наименование подразделения или Имя должностного лица 
-	 * */
+	/**
+	 * Наименование подразделения или Имя должностного лица
+	 */
 	private String Name;
 
-	/** 
+	/**
 	 * Должность
-	 *  */
+	 */
 	private String Post;
 
-	/** 
-	 * Признак должностного лица 
-	 * */
+	/**
+	 * Признак должностного лица
+	 */
 	private boolean Official;
 
-	/** 
-	 * Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы 
-	 * */
+	/**
+	 * Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы
+	 */
 	private boolean Deleted;
 
-	public Department(){
+	public Department() {
 		this.Id = -1;
 		this.Parent = null;
 		this.Chields = new HashSet<>();
@@ -67,69 +68,68 @@ public class Department implements Serializable{
 		this.Deleted = false;
 	}
 
-	public Department(Department Parent){
+	public Department(Department Parent) {
 		this();
 		this.Parent = Parent;
 	}
 
-	public Department(long ParentId){
+	public Department(long ParentId) {
 		// TODO add implementation
 		throw new UnsupportedOperationException();
 	}
 
-	public long getId(){
+	public long getId() {
 		return this.Id;
 	}
 
-	public void setName(String Name){
+	public void setName(String Name) {
 		this.Name = Name;
 	}
 
-	public String getName(){
+	public String getName() {
 		return this.Name;
 	}
 
-	public void setPost(String Post){
+	public void setPost(String Post) {
 		this.Post = Post;
 	}
 
-	public String getPost(){
+	public String getPost() {
 		return this.Post;
 	}
 
-	public void setOfficial(boolean Official){
+	public void setOfficial(boolean Official) {
 		this.Official = Official;
 	}
 
-	public boolean isOfficial(){
+	public boolean isOfficial() {
 		return this.Official;
 	}
 
-	protected void setDeleted(boolean Deleted){
+	protected void setDeleted(boolean Deleted) {
 		this.Deleted = Deleted;
 	}
 
-	public boolean isDeleted(){
+	public boolean isDeleted() {
 		return this.Deleted;
 	}
 
-	protected void setParent(Department Parent){
+	protected void setParent(Department Parent) {
 		this.Parent = Parent;
 	}
 
-	public Department getParent(){
+	public Department getParent() {
 		return this.Parent;
 	}
 
-	public Set<Department> getChields(){
+	public Set<Department> getChields() {
 		return this.Chields;
 	}
 
 	@Override
-	public String toString(){
+	public String toString() {
 		if (this.isOfficial())
 			return this.getName() + " - " + this.getPost();
 		return this.getName();
 	}
 }
-

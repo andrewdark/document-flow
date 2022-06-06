@@ -1,26 +1,28 @@
 package ua.pp.darknsoft.model.data;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-/** 
- * Иерархический справочник "Рубрикатор". 
- * Нужен для указания тематики вопроса в письме 
- * */
-@Entity 
-public class Rubric implements Serializable{
+/**
+ * Иерархический справочник "Рубрикатор".
+ * Нужен для указания тематики вопроса в письме
+ */
+@Entity
+public class Rubric implements Serializable {
 
 	private static final long serialVersionUID = 4834180509833455741L;
-	
+
 	/** Идентификатор записи */
-	@Id 
-	@GeneratedValue 
+	@Id
+	@GeneratedValue
 	private int Id;
 
 	/** Код тематики вопроса (В некоторіх случаях обязательное) */
@@ -29,15 +31,17 @@ public class Rubric implements Serializable{
 	/** Наименование рубрики */
 	private String Name;
 
-	/** Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы */
+	/**
+	 * Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы
+	 */
 	private boolean Deleted;
 
 	/** Ссілка на родительскую папку */
-	@ManyToOne	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Rubric Parent;
 
 	/** Перечень дочерних рубрик */
-	@OneToMany
+	@OneToMany(mappedBy = "Parent")
 	private Set<Rubric> Chields;
 
 	public Rubric() {
@@ -49,12 +53,12 @@ public class Rubric implements Serializable{
 		this.Chields = new HashSet<>();
 	}
 
-	public Rubric(Rubric Parent){
+	public Rubric(Rubric Parent) {
 		this();
 		this.Parent = Parent;
 	}
 
-	public int getId(){
+	public int getId() {
 		return this.Id;
 	}
 
@@ -97,7 +101,6 @@ public class Rubric implements Serializable{
 	@Override
 	public String toString() {
 		return this.getName();
-	}	
+	}
 
 }
-

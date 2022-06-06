@@ -1,6 +1,3 @@
-/**
- * @author Prk
- */
 package ua.pp.darknsoft.model.data;
 
 import java.io.Serializable;
@@ -9,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
+ * @author Prk
  * Справочник. Обозначение состояния исполнения резолюции.
  * Часто используется при закрытии резолюции.
  * Есть часто используемые варианты.
@@ -25,7 +23,7 @@ import javax.persistence.Id;
 public class CategoryResolution implements Serializable {
 
 	private static final long serialVersionUID = -1459695860564592480L;
-	
+
 	/**
 	 * Идентификатор записи
 	 */

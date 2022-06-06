@@ -5,55 +5,57 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-/** 
- * Список видов доставки 
- * */
-@Entity 
-public class Delivery implements Serializable{
-	
+
+/**
+ * Список видов доставки
+ */
+@Entity
+public class Delivery implements Serializable {
+
 	private static final long serialVersionUID = -7994948593975921064L;
-	
+
 	/** Идентификатор записи */
-	@Id 
-	@GeneratedValue 
+	@Id
+	@GeneratedValue
 	private int Id;
 
 	/** Наименование вида доставки */
 	private String Name;
 
-	/** Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы */
+	/**
+	 * Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы
+	 */
 	private boolean Deleted;
 
-	public Delivery(){
+	public Delivery() {
 		this.Id = -1;
 		this.Name = "";
 		this.Deleted = false;
 	}
 
-	public int getId(){
+	public int getId() {
 		return this.Id;
 	}
 
-	public void setName(String Name){
+	public void setName(String Name) {
 		this.Name = Name;
 	}
 
-	public String getName(){
+	public String getName() {
 		return this.Name;
 	}
 
-	protected void setDeleted(boolean Deleted){
+	protected void setDeleted(boolean Deleted) {
 		this.Deleted = Deleted;
 	}
 
-	public boolean isDeleted(){
+	public boolean isDeleted() {
 		return this.Deleted;
 	}
 
 	@Override
 	public String toString() {
 		return this.getName();
-	}	
+	}
 
 }
-

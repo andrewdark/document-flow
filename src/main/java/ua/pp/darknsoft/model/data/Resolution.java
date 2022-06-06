@@ -1,10 +1,12 @@
 package ua.pp.darknsoft.model.data;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -12,26 +14,26 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/** 
- * Резолюции а документе 
- * */
-@Entity 
-public class Resolution implements Serializable{
+/**
+ * Резолюции а документе
+ */
+@Entity
+public class Resolution implements Serializable {
 
 	private static final long serialVersionUID = -3486374283833135761L;
-	
+
 	/** Идентификатор записи */
-	@Id 
-	@GeneratedValue 
+	@Id
+	@GeneratedValue
 	private long Id;
 
 	/** Ссылка на документ */
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Record Document;
 
-	/** 
+	/**
 	 * Текст резолюции
-	 *  */
+	 */
 	private String Content;
 
 	/** Автор резолюции */
@@ -56,12 +58,12 @@ public class Resolution implements Serializable{
 	/** Ход исполнения */
 	private String Summary;
 
-	/** Состояние исполнения резолюции */	
-	@ManyToOne	
+	/** Состояние исполнения резолюции */
+	@ManyToOne
 	private CategoryResolution Category;
 
 	/** Отчеты исполнителей и сами исполнители */
-	@OneToMany
+	@OneToMany(mappedBy = "Resolution")
 	private Set<Reply> Replays;
 
 	public Resolution() {
@@ -78,12 +80,12 @@ public class Resolution implements Serializable{
 		this.Replays = new HashSet<>();
 	}
 
-	public Resolution(Record Document){
+	public Resolution(Record Document) {
 		this();
 		this.Document = Document;
 	}
 
-	public Resolution(long DocumentId){
+	public Resolution(long DocumentId) {
 		// TODO add implementation
 		throw new UnsupportedOperationException();
 	}
@@ -169,4 +171,3 @@ public class Resolution implements Serializable{
 	}
 
 }
-

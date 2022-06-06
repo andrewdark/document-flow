@@ -1,4 +1,5 @@
 package ua.pp.darknsoft.model.data;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,17 +11,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/** 
- * Визы и подписи исходящего документа 
- * */
-@Entity 
-public class Vise implements Serializable{
+/**
+ * Визы и подписи исходящего документа
+ */
+@Entity
+public class Vise implements Serializable {
 
 	private static final long serialVersionUID = 7958757576135122211L;
-	
+
 	/** Идентификатор записи */
-	@Id 
-	@GeneratedValue 
+	@Id
+	@GeneratedValue
 	private long Id;
 
 	/**
@@ -32,16 +33,16 @@ public class Vise implements Serializable{
 	/**
 	 * Ссылка на подписаный документ
 	 */
-	@ManyToOne	
+	@ManyToOne
 	private Record Document;
 
 	/**
 	 * Ссылка на должностное лицо подписавшее документ
 	 */
-	@ManyToOne	
+	@ManyToOne
 	private Department Official;
 
-	/** 
+	/**
 	 * Сила подписи: Подпись или Виза
 	 */
 	@Enumerated
@@ -61,23 +62,23 @@ public class Vise implements Serializable{
 		this.Note = "";
 	}
 
-	public Vise(Record Document){
+	public Vise(Record Document) {
 		this();
 		this.Document = Document;
 	}
 
-	public Vise(long DocumentId){
+	public Vise(long DocumentId) {
 		// TODO add implementation
 		throw new UnsupportedOperationException();
 	}
 
-	public Vise(Record Document, Department Official){
+	public Vise(Record Document, Department Official) {
 		this();
 		this.Document = Document;
 		this.Official = Official;
 	}
 
-	public Vise(long DocumentId, long OfficialId){
+	public Vise(long DocumentId, long OfficialId) {
 		// TODO add implementation
 		throw new UnsupportedOperationException();
 	}
@@ -129,14 +130,14 @@ public class Vise implements Serializable{
 	@Override
 	public String toString() {
 		String result = "";
-		if (this.getDate()!=null)
-			result = "["+this.getDate().toString()+"]";
-		if (this.getOfficial()!=null) {
-			if (result.length()>0) result += " ";
+		if (this.getDate() != null)
+			result = "[" + this.getDate().toString() + "]";
+		if (this.getOfficial() != null) {
+			if (result.length() > 0)
+				result += " ";
 			result += this.getOfficial().toString();
 		}
 		return result;
-	}	
+	}
 
 }
-

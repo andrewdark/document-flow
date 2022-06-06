@@ -1,30 +1,32 @@
 package ua.pp.darknsoft.model.data;
+
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/** 
- * Отчеты исполнителей 
- * */
-@Entity 
-public class Reply implements Serializable{
-	
+/**
+ * Отчеты исполнителей
+ */
+@Entity
+public class Reply implements Serializable {
+
 	private static final long serialVersionUID = -2059650748545250243L;
-	
+
 	/** Идентификатор записи */
-	@Id 
-	@GeneratedValue 
+	@Id
+	@GeneratedValue
 	private long Id;
 
 	/** Ссылка на резолюцию содержащих ответы/исполнителей */
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Resolution Resolution;
 
 	/** Дата отчета */
@@ -32,7 +34,7 @@ public class Reply implements Serializable{
 	private Date ReplyDate;
 
 	/** Варианты ответа */
-	@Enumerated 
+	@Enumerated
 	private CategoryReply Category;
 
 	/** Ссылка на исполнителя */
@@ -41,7 +43,7 @@ public class Reply implements Serializable{
 
 	private String Content;
 
-	public Reply(){
+	public Reply() {
 		this.Id = -1;
 		this.Content = "";
 		this.Category = null;
@@ -50,18 +52,18 @@ public class Reply implements Serializable{
 		this.Resolution = null;
 	}
 
-	public Reply(Resolution Resolution, Department Executor){
+	public Reply(Resolution Resolution, Department Executor) {
 		this();
 		this.Resolution = Resolution;
 		this.Executor = Executor;
 	}
 
-	public Reply(long ResolutionId, long ExecutorId){
+	public Reply(long ResolutionId, long ExecutorId) {
 		// TODO add implementation
 		throw new UnsupportedOperationException();
 	}
 
-	public long getId(){
+	public long getId() {
 		return this.Id;
 	}
 
@@ -72,7 +74,7 @@ public class Reply implements Serializable{
 	public void setContent(String Content) {
 		this.Content = Content;
 	}
-	
+
 	public Resolution getResolution() {
 		return this.Resolution;
 	}
@@ -106,4 +108,3 @@ public class Reply implements Serializable{
 	}
 
 }
-

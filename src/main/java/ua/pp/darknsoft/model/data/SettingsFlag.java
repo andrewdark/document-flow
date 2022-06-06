@@ -1,21 +1,22 @@
 package ua.pp.darknsoft.model.data;
+
 import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-/** 
- * Справочник всех настроек 
- * */
-@Entity 
-public class SettingsFlag implements Serializable{
-	
+/**
+ * Справочник всех настроек
+ */
+@Entity
+public class SettingsFlag implements Serializable {
+
 	private static final long serialVersionUID = -5755708823061137368L;
-	
+
 	/** Идентификатор записи */
-	@Id 
-	@GeneratedValue 
+	@Id
+	@GeneratedValue
 	private int Id;
 
 	/** Название настройки(стоит задуматься о точечной номенклатуре) */
@@ -53,6 +54,5 @@ public class SettingsFlag implements Serializable{
 	@Override
 	public String toString() {
 		return this.getName();
-	}	
+	}
 }
-

@@ -1,43 +1,45 @@
 package ua.pp.darknsoft.model.data;
+
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
-/** 
- * Настройки работы клиента 
- * */
-@Entity 
-public class Settings implements Serializable{
-	
+/**
+ * Настройки работы клиента
+ */
+@Entity
+public class Settings implements Serializable {
+
 	private static final long serialVersionUID = -142298292332956352L;
-	
-	/** 
-	 * Идентификатор записи 
-	 * */
-	@Id 
-	@GeneratedValue 
+
+	/**
+	 * Идентификатор записи
+	 */
+	@Id
+	@GeneratedValue
 	private long Id;
 
-	/** 
-	 * Ссылка на пользователя для которого предназначени 
-	 * эти настройки. Может быть пустым в случае 
-	 * общего характера настройки. 
-	 * */
-	@OneToOne
-	private User User;
+	/**
+	 * Ссылка на пользователя для которого предназначени
+	 * эти настройки. Может быть пустым в случае
+	 * общего характера настройки.
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	private UserEntry User;
 
-	/** 
-	 * Номенклатура настройки 
-	 * */
-	@OneToOne
+	/**
+	 * Номенклатура настройки
+	 */
+	@ManyToOne
 	private SettingsFlag Flag;
 
-	/** 
-	 * Заданое значение для настройки 
-	 * */
+	/**
+	 * Заданое значение для настройки
+	 */
 	private String Value;
 
 	public Settings() {
@@ -47,20 +49,20 @@ public class Settings implements Serializable{
 		this.Value = "";
 	}
 
-	public Settings(User User){
+	public Settings(UserEntry User) {
 		this();
 		this.User = User;
 	}
-	
+
 	public long getId() {
 		return this.Id;
 	}
 
-	public User getUser() {
+	public UserEntry getUser() {
 		return this.User;
 	}
 
-	protected void setUser(User user) {
+	protected void setUser(UserEntry user) {
 		this.User = user;
 	}
 
@@ -83,7 +85,6 @@ public class Settings implements Serializable{
 	@Override
 	public String toString() {
 		return this.getValue();
-	}	
+	}
 
 }
-

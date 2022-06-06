@@ -2,21 +2,22 @@ package ua.pp.darknsoft.model.data;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/** 
- * Связка между документами 
- * */
-@Entity 
-public class LinkRecord implements Serializable{
-	
+/**
+ * Связка между документами
+ */
+@Entity
+public class LinkRecord implements Serializable {
+
 	private static final long serialVersionUID = 4638047586810335138L;
 
 	/** Идентификатор записи */
-	@Id 
-	@GeneratedValue 
+	@Id
+	@GeneratedValue
 	private long Id;
 
 	/** Тип связки */
@@ -24,17 +25,17 @@ public class LinkRecord implements Serializable{
 	private LinkType Type;
 
 	/** Ссылка на основной документ */
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Record Document;
 
 	/** Ссылка на связаный документ */
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Record Link;
 
 	/** Примечание / информация о виртуальном документе */
 	private String Note;
 
-	public LinkRecord(){
+	public LinkRecord() {
 		this.Id = -1;
 		this.Type = null;
 		this.Document = null;
@@ -42,70 +43,70 @@ public class LinkRecord implements Serializable{
 		this.Note = "";
 	}
 
-	public LinkRecord(Record Document, Record Link){
+	public LinkRecord(Record Document, Record Link) {
 		this();
 		this.Document = Document;
 		this.Link = Link;
 	}
 
-	public LinkRecord(long DocumentId, long LinkId){
+	public LinkRecord(long DocumentId, long LinkId) {
 		// TODO add implementation
 		throw new UnsupportedOperationException();
 	}
 
-	public LinkRecord(Record Document, Record Link, LinkType Type){
+	public LinkRecord(Record Document, Record Link, LinkType Type) {
 		this();
 		this.Type = Type;
 		this.Document = Document;
-		this.Link = Link;	}
+		this.Link = Link;
+	}
 
-	public LinkRecord(long DocumentId, long LinkId, int TypeId){
+	public LinkRecord(long DocumentId, long LinkId, int TypeId) {
 		// TODO add implementation
 		throw new UnsupportedOperationException();
 	}
 
-	public long getId(){
+	public long getId() {
 		return this.Id;
 	}
 
-	public void setNote(String Note){
+	public void setNote(String Note) {
 		this.Note = Note;
 	}
 
-	public String getNote(){
+	public String getNote() {
 		return this.Note;
 	}
 
-	protected void setDocument(Record Document){
+	protected void setDocument(Record Document) {
 		this.Document = Document;
 	}
 
-	public Record getDocument(){
+	public Record getDocument() {
 		return this.Document;
 	}
 
-	public void setLink(Record Link){
+	public void setLink(Record Link) {
 		this.Link = Link;
 	}
 
-	public Record getLink(){
+	public Record getLink() {
 		return this.Link;
 	}
 
-	public void setType(LinkType Type){
+	public void setType(LinkType Type) {
 		this.Type = Type;
 	}
 
-	public LinkType getType(){
+	public LinkType getType() {
 		return this.Type;
 	}
 
 	@Override
 	public String toString() {
-		if (this.getLink()!=null)
+		if (this.getLink() != null)
 			return this.getLink().toString();
-		return this.Note;	
-	}	
+		return this.Note;
+	}
 
 }
-
